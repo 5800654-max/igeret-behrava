@@ -15,15 +15,15 @@ SLUG = "toldot"
 s = open(SRC, encoding="utf8").read()
 
 assets = {
-    "092a4674b10bba3566b21b1125b2ba2b": "media/shavua-hachasidut.jpg",
-    "3f8cc44903b95a0b2100abb09ee0c2a9": "media/tadrich-yud-shvat.pdf",
-    "a531bd20534d23830cc5a2de728463a0": "media/bocharim-poster.jpg",
-    "afa4a45b02edf86340ede830a767f1d0": "media/kitat-hayahalomim.jpg",
-    "bc12e8cd5ca72cb3451b53358bf0587c": "media/keter-poster.jpg",
-    "bfbadbb9b57ad38b704de3b616cdda1c": "media/bocharim.mp4",
-    "c3cbfa9fcfac36840c0f14285c0a57e9": "media/toda-tiferet-menachem.jpg",
-    "d47667f9b1e9aee505548c969d51b7c0": "media/bocharim-video-poster.jpg",
-    "e22b32202f2189eb7251117f739cde6b": "media/keter-torah.mp4",
+    "092a4674b10bba3566b21b1125b2ba2b": "/toldot/media/shavua-hachasidut.jpg",
+    "3f8cc44903b95a0b2100abb09ee0c2a9": "/toldot/media/tadrich-yud-shvat.pdf",
+    "a531bd20534d23830cc5a2de728463a0": "/toldot/media/bocharim-poster.jpg",
+    "afa4a45b02edf86340ede830a767f1d0": "/toldot/media/kitat-hayahalomim.jpg",
+    "bc12e8cd5ca72cb3451b53358bf0587c": "/toldot/media/keter-poster.jpg",
+    "bfbadbb9b57ad38b704de3b616cdda1c": "/toldot/media/bocharim.mp4",
+    "c3cbfa9fcfac36840c0f14285c0a57e9": "/toldot/media/toda-tiferet-menachem.jpg",
+    "d47667f9b1e9aee505548c969d51b7c0": "/toldot/media/bocharim-video-poster.jpg",
+    "e22b32202f2189eb7251117f739cde6b": "/toldot/media/keter-torah.mp4",
 }
 for blob, path in assets.items():
     s = s.replace("/_blob/" + blob, path)
