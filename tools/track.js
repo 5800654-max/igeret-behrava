@@ -1,7 +1,7 @@
 /* Silent tracking: every open, click and answer goes to the Apps Script log.
    The reader sees nothing change except a small confirmation. */
 (function(){
-  var TRACK_URL = "";   // Apps Script web-app address (…/exec). Empty = tracking off.
+  var TRACK_URL = "https://script.google.com/macros/s/AKfycbw-GjxvO6u1KoxGlAFgXl-W30OwkEsooqXbS0qrD4GWhcCx_ZfBjNKqcIRBkP-ZPMf7/exec";   // Apps Script web-app address (…/exec). Empty = tracking off.
   var WEEK = "__WEEK__";
 
   function who(){
