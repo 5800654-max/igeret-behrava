@@ -87,7 +87,13 @@
     document.documentElement.style.overflow="hidden";
     function done(){
       var n=box.querySelector("#me-n").value.trim().replace(/^הרב\s+/,""), i=box.querySelector("#me-i").value.trim();
-      if(n.length<2||i.length<2){ box.querySelector("#me-err").textContent="צריך למלא גם שם וגם מוסד."; return; }
+      n=n.replace(/\s+/g," "); i=i.replace(/\s+/g," ");
+      var err=box.querySelector("#me-err"), heb=/[\u05D0-\u05EA]/g;
+      if(!n||!i){ err.textContent="צריך למלא גם שם וגם מוסד."; return; }
+      if(!/^[\u05D0-\u05EA"'׳״.\- ]+$/.test(n)||n.split(" ").filter(function(x){return (x.match(heb)||[]).length>=2}).length<2){
+        err.textContent="נא לכתוב שם פרטי ושם משפחה, באותיות עבריות."; return; }
+      if(!/^[\u05D0-\u05EA0-9"'׳״.,()\- ]+$/.test(i)||(i.match(heb)||[]).length<3){
+        err.textContent="נא לכתוב את שם המוסד באותיות עבריות."; return; }
       var w={n:n,i:i,id:""}; window.__igMe=w;
       try{ localStorage.setItem("igeret-me", JSON.stringify(w)); }catch(e){}
       box.remove(); document.documentElement.style.overflow=oldOverflow; greetName(w);
