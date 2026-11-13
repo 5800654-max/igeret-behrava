@@ -43,24 +43,32 @@
   var me=who();
   if(me.n){ greetName(me); }
   else {
-    var hero=document.querySelector(".hero"), box=document.createElement("div");
+    // Must identify before reading: a window over the letter, no way to skip
+    var box=document.createElement("div");
     box.className="whoami";
-    box.innerHTML='<p style="margin:0 0 8px;font-weight:700">נעים להכיר! כדי שנדע מי קרא, כתבו את שמכם ואת המוסד:</p>'+
-      '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">'+
-      '<input id="me-n" placeholder="שם (למשל: לוי כהן)" style="flex:1 1 160px;min-width:0;font:inherit;padding:9px 12px;border-radius:10px;border:none">'+
-      '<input id="me-i" placeholder="מוסד" style="flex:1 1 140px;min-width:0;font:inherit;padding:9px 12px;border-radius:10px;border:none">'+
-      '<button type="button" id="me-ok" style="font:inherit;font-weight:700;border:none;border-radius:10px;padding:9px 18px;background:#ff8f4f;color:#2a1d63;cursor:pointer">אישור</button></div>';
-    box.setAttribute("style","position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 14px;color:#fff;max-width:100%");
-    if(hero){ var band=hero.querySelector(".band"); hero.insertBefore(box, band||null); }
-    var ok=box.querySelector("#me-ok");
-    ok.addEventListener("click",function(){
+    box.setAttribute("role","dialog"); box.setAttribute("aria-modal","true");
+    box.setAttribute("style","position:fixed;inset:0;z-index:9999;background:rgba(42,29,99,.92);display:flex;align-items:center;justify-content:center;padding:16px;font-family:Rubik,Arial,sans-serif");
+    box.innerHTML='<div style="background:#fff;color:#1d1838;border-radius:18px;padding:22px 18px;max-width:420px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.35)">'+
+      '<div style="color:#4eabbc;font-weight:700">האגף לחינוך יסודי - בנים</div>'+
+      '<div style="font-size:40px;font-weight:900;color:#ff8f4f;line-height:1.2">בהרחבה</div>'+
+      '<p style="margin:10px 0 14px;font-weight:700">נעים להכיר! לפני הקריאה, כתבו את שמכם ואת המוסד:</p>'+
+      '<input id="me-n" autocomplete="name" placeholder="שם (למשל: לוי כהן)" style="display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid #cfcbe3;margin-bottom:8px">'+
+      '<input id="me-i" autocomplete="organization" placeholder="מוסד" style="display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid #cfcbe3;margin-bottom:10px">'+
+      '<p id="me-err" style="color:#c0392b;min-height:1.2em;margin:0 0 8px;font-size:14px"></p>'+
+      '<button type="button" id="me-ok" style="width:100%;font:inherit;font-size:18px;font-weight:700;border:none;border-radius:12px;padding:12px;background:#ff8f4f;color:#2a1d63;cursor:pointer">לקריאת האיגרת</button></div>';
+    document.body.appendChild(box);
+    var oldOverflow=document.documentElement.style.overflow;
+    document.documentElement.style.overflow="hidden";
+    function done(){
       var n=box.querySelector("#me-n").value.trim().replace(/^הרב\s+/,""), i=box.querySelector("#me-i").value.trim();
-      if(!n) return;
+      if(n.length<2||i.length<2){ box.querySelector("#me-err").textContent="צריך למלא גם שם וגם מוסד."; return; }
       var w={n:n,i:i,id:""};
       try{ localStorage.setItem("igeret-me", JSON.stringify(w)); }catch(e){}
-      box.remove(); greetName(w);
-      send("הזדהה", n+(i?" | "+i:""));
-    });
+      box.remove(); document.documentElement.style.overflow=oldOverflow; greetName(w);
+      send("הזדהה", n+" | "+i);
+    }
+    box.querySelector("#me-ok").addEventListener("click",done);
+    box.addEventListener("keydown",function(e){ if(e.key==="Enter") done(); });
   }
 
   // Which parts were read: one summary row when the reader leaves
