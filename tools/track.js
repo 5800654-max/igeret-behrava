@@ -11,6 +11,7 @@
         var b=new Uint8Array(id.slice(2).match(/../g).map(function(h){return parseInt(h,16)}));
         var t=new TextDecoder().decode(b).split("|");
         out={n:t[0]||"",i:t[1]||"",id:t[3]||""};
+        if(out.n) window.__igMe=out;
         try{ if(out.n) localStorage.setItem("igeret-me", JSON.stringify(out)); }catch(e){}
       }catch(e){}
     }
@@ -18,12 +19,39 @@
     if(!out.n && window.__igMe) out=window.__igMe;
     return out;
   }
+  // A random id per device, so one personal link opened on two devices shows up
+  function device(){
+    var d="";
+    try{ d=localStorage.getItem("igeret-dv")||""; }catch(e){}
+    if(!d){ d=window.__igDv||Math.random().toString(36).slice(2,8); window.__igDv=d; try{ localStorage.setItem("igeret-dv",d); }catch(e){} }
+    return d;
+  }
+  function hex(str){ return Array.prototype.map.call(new TextEncoder().encode(str),function(b){return ("0"+b.toString(16)).slice(-2)}).join(""); }
+  function unhex(h){ try{ return new TextDecoder().decode(new Uint8Array(h.match(/../g).map(function(x){return parseInt(x,16)}))); }catch(e){ return ""; } }
+  var params=new URLSearchParams(location.search);
+  var SRC=(params.get("src")||"").slice(0,40);                      // which group or broadcast link
+  var FROM=/^[0-9a-f]+$/.test(params.get("from")||"") ? unhex(params.get("from")).split("|") : null;   // who passed the link on
+  // The address in the browser now names the reader, without their identity.
+  // If they copy it and send it on, the next reader must identify and is logged as "הגיע דרך" them.
+  function markAddress(w){
+    try{
+      var q=new URLSearchParams(); if(SRC) q.set("src",SRC); q.set("from",hex(w.n+"|"+(w.i||"")));
+      history.replaceState(null,"",location.pathname+"?"+q.toString());
+    }catch(e){}
+  }
+  function openDetails(w, extra){
+    var parts=[]; if(extra) parts.push(extra);
+    if(FROM && FROM[0] && FROM[0]!==w.n) parts.push("הגיע דרך: הרב "+FROM[0]+(FROM[1]?" ("+FROM[1]+")":""));
+    if(SRC) parts.push("קישור: "+SRC);
+    return parts.join(" | ");
+  }
+
   function send(what, details){
     if(!TRACK_URL) return false;
     var w=who();
     var q="a=ev&w="+encodeURIComponent(WEEK)+"&what="+encodeURIComponent(what)+
           "&d="+encodeURIComponent(details||"")+"&n="+encodeURIComponent(w.n)+
-          "&i="+encodeURIComponent(w.i)+"&id="+encodeURIComponent(w.id);
+          "&i="+encodeURIComponent(w.i)+"&id="+encodeURIComponent(w.id)+"&dv="+encodeURIComponent(device());
     var url=TRACK_URL+"?"+q;
     try{ if(navigator.sendBeacon && navigator.sendBeacon(url)) return true; }catch(e){}
     try{ fetch(url,{method:"POST",mode:"no-cors",keepalive:true}); return true; }catch(e){}
@@ -39,7 +67,7 @@
     g.textContent="לכבוד שליח הרבי בחינוך, הרב "+w.n+(w.i?" | "+w.i:""); g.hidden=false;
   }
   var me=who();
-  if(me.n){ greetName(me); send("פתח את האיגרת",""); }
+  if(me.n){ greetName(me); send("פתח את האיגרת",openDetails(me,"")); markAddress(me); }
   else {
     // Must identify before reading: a window over the letter, no way to skip
     var box=document.createElement("div");
@@ -63,11 +91,11 @@
       var w={n:n,i:i,id:""}; window.__igMe=w;
       try{ localStorage.setItem("igeret-me", JSON.stringify(w)); }catch(e){}
       box.remove(); document.documentElement.style.overflow=oldOverflow; greetName(w);
-      send("פתח את האיגרת","הזדהה בכניסה");
+      send("פתח את האיגרת",openDetails(w,"הזדהה בכניסה")); markAddress(w);
     }
     // Left without filling in a name: one row, so these visits are still counted
     var left=false;
-    function leftAnon(){ if(left||document.body.contains(box)===false) return; left=true; send("נכנס ולא הזדהה",""); }
+    function leftAnon(){ if(left||document.body.contains(box)===false) return; left=true; send("נכנס ולא הזדהה",openDetails({n:""},"")); }
     addEventListener("pagehide",leftAnon);
     document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="hidden") leftAnon(); });
     box.querySelector("#me-ok").addEventListener("click",done);
