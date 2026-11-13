@@ -15,6 +15,7 @@
       }catch(e){}
     }
     if(!out.n){ try{ var m=JSON.parse(localStorage.getItem("igeret-me")||"null"); if(m&&m.n) out=m; }catch(e){} }
+    if(!out.n && window.__igMe) out=window.__igMe;
     return out;
   }
   function send(what, details){
@@ -32,16 +33,13 @@
   window.__track = send;
   if(!TRACK_URL) return;
 
-  // Opened the letter
-  send("פתח את האיגרת","");
-
   // Opened from a shared link (WhatsApp group or broadcast): ask once who is reading
   function greetName(w){
     var g=document.getElementById("greet"); if(!g) return;
     g.textContent="לכבוד שליח הרבי בחינוך, הרב "+w.n+(w.i?" | "+w.i:""); g.hidden=false;
   }
   var me=who();
-  if(me.n){ greetName(me); }
+  if(me.n){ greetName(me); send("פתח את האיגרת",""); }
   else {
     // Must identify before reading: a window over the letter, no way to skip
     var box=document.createElement("div");
@@ -62,11 +60,16 @@
     function done(){
       var n=box.querySelector("#me-n").value.trim().replace(/^הרב\s+/,""), i=box.querySelector("#me-i").value.trim();
       if(n.length<2||i.length<2){ box.querySelector("#me-err").textContent="צריך למלא גם שם וגם מוסד."; return; }
-      var w={n:n,i:i,id:""};
+      var w={n:n,i:i,id:""}; window.__igMe=w;
       try{ localStorage.setItem("igeret-me", JSON.stringify(w)); }catch(e){}
       box.remove(); document.documentElement.style.overflow=oldOverflow; greetName(w);
-      send("הזדהה", n+" | "+i);
+      send("פתח את האיגרת","הזדהה בכניסה");
     }
+    // Left without filling in a name: one row, so these visits are still counted
+    var left=false;
+    function leftAnon(){ if(left||document.body.contains(box)===false) return; left=true; send("נכנס ולא הזדהה",""); }
+    addEventListener("pagehide",leftAnon);
+    document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="hidden") leftAnon(); });
     box.querySelector("#me-ok").addEventListener("click",done);
     box.addEventListener("keydown",function(e){ if(e.key==="Enter") done(); });
   }
@@ -83,7 +86,7 @@
   document.querySelectorAll("details[data-track]").forEach(function(d){
     d.addEventListener("toggle",function(){var k=d.getAttribute("data-track");if(d.open&&seen.indexOf(k)<0)seen.push(k)});
   });
-  function report(){ if(reported||!seen.length) return; reported=true; send("קרא חלקים", seen.join(", ")); }
+  function report(){ if(reported||!seen.length||!who().n) return; reported=true; send("קרא חלקים", seen.join(", ")); }
   document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="hidden") report(); });
   addEventListener("pagehide",report);
 
