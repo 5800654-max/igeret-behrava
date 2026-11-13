@@ -731,8 +731,10 @@ const offline=()=>{};
         var b=new Uint8Array(id.slice(2).match(/../g).map(function(h){return parseInt(h,16)}));
         var t=new TextDecoder().decode(b).split("|");
         out={n:t[0]||"",i:t[1]||"",id:t[3]||""};
+        try{ if(out.n) localStorage.setItem("igeret-me", JSON.stringify(out)); }catch(e){}
       }catch(e){}
     }
+    if(!out.n){ try{ var m=JSON.parse(localStorage.getItem("igeret-me")||"null"); if(m&&m.n) out=m; }catch(e){} }
     return out;
   }
   function send(what, details){
@@ -752,6 +754,34 @@ const offline=()=>{};
 
   // Opened the letter
   send("פתח את האיגרת","");
+
+  // Opened from a shared link (WhatsApp group or broadcast): ask once who is reading
+  function greetName(w){
+    var g=document.getElementById("greet"); if(!g) return;
+    g.textContent="לכבוד שליח הרבי בחינוך, הרב "+w.n+(w.i?" | "+w.i:""); g.hidden=false;
+  }
+  var me=who();
+  if(me.n){ greetName(me); }
+  else {
+    var hero=document.querySelector(".hero"), box=document.createElement("div");
+    box.className="whoami";
+    box.innerHTML='<p style="margin:0 0 8px;font-weight:700">נעים להכיר! כדי שנדע מי קרא, כתבו את שמכם ואת המוסד:</p>'+
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">'+
+      '<input id="me-n" placeholder="שם (למשל: לוי כהן)" style="flex:1 1 160px;min-width:0;font:inherit;padding:9px 12px;border-radius:10px;border:none">'+
+      '<input id="me-i" placeholder="מוסד" style="flex:1 1 140px;min-width:0;font:inherit;padding:9px 12px;border-radius:10px;border:none">'+
+      '<button type="button" id="me-ok" style="font:inherit;font-weight:700;border:none;border-radius:10px;padding:9px 18px;background:#ff8f4f;color:#2a1d63;cursor:pointer">אישור</button></div>';
+    box.setAttribute("style","position:relative;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 14px;color:#fff;max-width:100%");
+    if(hero){ var band=hero.querySelector(".band"); hero.insertBefore(box, band||null); }
+    var ok=box.querySelector("#me-ok");
+    ok.addEventListener("click",function(){
+      var n=box.querySelector("#me-n").value.trim().replace(/^הרב\s+/,""), i=box.querySelector("#me-i").value.trim();
+      if(!n) return;
+      var w={n:n,i:i,id:""};
+      try{ localStorage.setItem("igeret-me", JSON.stringify(w)); }catch(e){}
+      box.remove(); greetName(w);
+      send("הזדהה", n+(i?" | "+i:""));
+    });
+  }
 
   // Which parts were read: one summary row when the reader leaves
   var seen=[], reported=false;
