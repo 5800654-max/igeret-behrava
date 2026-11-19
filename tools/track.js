@@ -80,7 +80,7 @@
       '<div style="color:#4eabbc;font-weight:700">האגף לחינוך יסודי - בנים</div>'+
       '<div style="font-size:40px;font-weight:900;color:#ff8f4f;line-height:1.2">בהרחבה</div>'+
       '<p style="margin:10px 0 14px;font-weight:700">נעים להכיר! לפני הקריאה, כתבו את שמכם ואת המוסד:</p>'+
-      '<input id="me-n" autocomplete="name" placeholder="שם (למשל: לוי כהן)" style="display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid #cfcbe3;margin-bottom:8px">'+
+      '<input id="me-n" autocomplete="name" placeholder="שם (למשל: ישראל ישראלי)" style="display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid #cfcbe3;margin-bottom:8px">'+
       '<input id="me-i" autocomplete="organization" placeholder="מוסד" style="display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 12px;border-radius:10px;border:1px solid #cfcbe3;margin-bottom:10px">'+
       '<p id="me-err" style="color:#c0392b;min-height:1.2em;margin:0 0 8px;font-size:14px"></p>'+
       '<button type="button" id="me-ok" style="width:100%;font:inherit;font-size:18px;font-weight:700;border:none;border-radius:12px;padding:12px;background:#ff8f4f;color:#2a1d63;cursor:pointer">לקריאת האיגרת</button></div>';
