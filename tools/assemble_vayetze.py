@@ -42,6 +42,11 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .bridge{transition:color .4s}
 .bridge.on{color:var(--orange)}
 .bridge.on .st{color:var(--teal)}
+.gated{display:none!important}
+.next{display:block;margin:8px auto 0;font:inherit;font-weight:800;font-size:1.05rem;border:none;border-radius:14px;padding:12px 22px;background:linear-gradient(90deg,#ff8f4f,#f07a32);color:#2a1d63;cursor:pointer;box-shadow:0 6px 18px rgba(240,122,50,.3)}
+.next small{display:block;font-weight:600;font-size:.88rem;margin-top:2px}
+.bridge.done .next{display:none}
+.showall{display:block;text-align:center;color:#d9d1f2;font-size:.85rem;margin-top:6px}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
