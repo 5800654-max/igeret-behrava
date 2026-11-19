@@ -135,6 +135,9 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .wrap{background:var(--glass);-webkit-backdrop-filter:blur(7px) saturate(1.1);backdrop-filter:blur(7px) saturate(1.1);border-radius:26px;padding-inline:clamp(10px,3vw,22px);margin-top:10px!important;margin-bottom:24px!important;box-shadow:0 10px 40px rgba(42,29,99,.10),inset 0 0 0 1px rgba(255,255,255,.35);transition:background .6s}
 .bgl.dark ~ .wrap{background:var(--glass-thin)}
 @supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.wrap{background:var(--bg)}}
+.mini-fold{margin-top:6px;border:1px dashed var(--line);border-radius:12px;padding:8px 12px;display:grid;gap:8px}
+.mini-fold summary{cursor:pointer;font-weight:700;color:var(--brand);list-style:none}
+.mini-fold summary::-webkit-details-marker{display:none}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
