@@ -1,7 +1,5 @@
 <div class="climb" aria-hidden="true"><span id="climb"></span></div>
-<nav class="rope" id="rope" aria-label="הסולם: עולים ויורדים בין חלקי האיגרת"></nav>
-<div class="rpill" id="rpill" aria-hidden="true"></div>
-<div class="cheer" id="cheer" role="status" aria-live="polite"></div>
+<div class="bgl" id="bgl" aria-hidden="true"></div>
 <div class="wrap" dir="rtl" lang="he">
 
   <!-- Hero -->
@@ -473,8 +471,23 @@ document.addEventListener("DOMContentLoaded",function(){
     back.addEventListener("click",function(){ show(i-1,"down"); });
   });
   function vis(list,v){ list.forEach(function(el){ el.classList.toggle("gated",!v); }); }
+  var busy=false, reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function visibleNow(){ return (c===-1?intro:groups[c].concat([bridges[c]])).concat(bridges[c+1]?[bridges[c+1]]:[]); }
   function show(n,how){
-    if(all) return;
+    if(all||busy) return;
+    if((how==="up"||how==="down"||how==="ladder")&&!reduce&&n!==c){
+      busy=true;
+      dispatchEvent(new CustomEvent("igclimb",{detail:{from:c,to:n}}));
+      visibleNow().forEach(function(el){ if(el) el.classList.add("leaving"); });
+      setTimeout(function(){
+        visibleNow().forEach(function(el){ if(el) el.classList.remove("leaving"); });
+        busy=false; doShow(n,how);
+      },700);
+      return;
+    }
+    doShow(n,how);
+  }
+  function doShow(n,how){
     c=n;
     vis(intro,c===-1);
     groups.forEach(function(g,k){ vis(g,k===c); });
@@ -520,87 +533,51 @@ document.addEventListener("DOMContentLoaded",function(){
   show(-1);
 })();
 
-/* A rope ladder on the side: always there, faint while you read, darker when it is time to climb */
+/* The ladder in the background: breathing quietly, angels going up and down,
+   one rung lit where the reader is. On "continue" it darkens and climbs. */
 (function(){
-  var NAMES=["הסולם","מזל טוב","שלוש תוכניות",'יו"ד שבט',"מהשטח","החידה","יד ימין"];
-  var MSG=["הסולם של המנהל","שמחים יחד","כלים חדשים למוסד שלך","חצי סולם, יישר כוח!","מציצים למשפחה","כמעט בראש הסולם","השלב האחרון בסולם"];
-  var nav=document.getElementById("rope"), pill=document.getElementById("rpill");
-  var T=function(w,d){ if(window.__track) window.__track(w,d||""); };
-  var H=430, SKY=22, GROUND=398, Y=[], TILT=[-4,3,-2,4,-3,2,-4], XS=[1,-1,2,-1,1,-2,1];
-  for(var i=0;i<NAMES.length;i++) Y[i]=352-i*47;
-  var NS="http://www.w3.org/2000/svg";
-  var svg=document.createElementNS(NS,"svg"); svg.setAttribute("viewBox","0 0 44 "+H); svg.setAttribute("preserveAspectRatio","xMidYMid meet");
-  function el(n,a,parent){ var e=document.createElementNS(NS,n); for(var k in a) e.setAttribute(k,a[k]); (parent||svg).appendChild(e); return e; }
+  var host=document.getElementById("bgl"); if(!host) return;
+  var N=7, H=1000, NS="http://www.w3.org/2000/svg";
+  function el(n,a,p){ var e=document.createElementNS(NS,n); for(var k in a) e.setAttribute(k,a[k]); (p||svg).appendChild(e); return e; }
+  var svg=document.createElementNS(NS,"svg"); svg.setAttribute("viewBox","0 0 200 "+H); svg.setAttribute("preserveAspectRatio","xMidYMid meet");
   var defs=el("defs",{});
-  var f=el("filter",{id:"glow",x:"-80%",y:"-80%",width:"260%",height:"260%"},defs);
-  el("feGaussianBlur",{stdDeviation:"3",result:"b"},f); var m=el("feMerge",{},f); el("feMergeNode",{in:"b"},m); el("feMergeNode",{in:"SourceGraphic"},m);
-  // sky
-  var sky=el("g",{"class":"rsky",role:"img","aria-label":"השמימה"});
-  el("path",{d:"M22 6 L24.5 15 L33 17 L24.5 19 L22 28 L19.5 19 L11 17 L19.5 15 Z"},sky);
-  // two hand-drawn ropes
-  ["M9 10 C 6 80, 12 150, 8 220 S 11 340, 9 412","M35 10 C 38 90, 32 160, 36 230 S 33 350, 35 412"].forEach(function(d){
-    el("path",{d:d,"class":"rp"}); el("path",{d:d,"class":"rp2"});
+  var f=el("filter",{id:"bglow",x:"-100%",y:"-100%",width:"300%",height:"300%"},defs);
+  el("feGaussianBlur",{stdDeviation:"5"},f);
+  // rails narrow toward the sky
+  function railX(side,y){ var t=1-y/H; return side<0?28+t*52:172-t*52; }
+  var lad=el("g",{"class":"bl-lad"});
+  el("path",{d:"M28 1000 L80 0","class":"bl-rail"},lad); el("path",{d:"M172 1000 L120 0","class":"bl-rail"},lad);
+  var Y=[]; for(var i=0;i<N;i++) Y[i]=870-i*110;      // step 1 low, step 7 high
+  var rungs=Y.map(function(y){ return el("path",{d:"M"+railX(-1,y)+" "+y+" L"+railX(1,y)+" "+y,"class":"bl-rung"},lad); });
+  // the sky at the top and the ground below
+  el("circle",{cx:"100",cy:"40",r:"26","class":"bl-sky",filter:"url(#bglow)"});
+  el("path",{d:"M0 985 Q 50 975 100 984 T 200 982","class":"bl-ground"});
+  // the reader's place: a soft light on one rung
+  var here=el("g",{"class":"bl-here"});
+  el("ellipse",{cx:"100",cy:"0",rx:"46",ry:"10",filter:"url(#bglow)"},here);
+  // angels: small lights with little wings, going up and down all the time
+  function angel(cls,x,dur,delay){
+    var g=el("g",{"class":"bl-angel "+cls,style:"animation-duration:"+dur+"s;animation-delay:"+delay+"s"});
+    el("ellipse",{cx:String(x-6),cy:"0",rx:"7",ry:"3.2",transform:"rotate(-25 "+(x-6)+" 0)","class":"w"},g);
+    el("ellipse",{cx:String(x+6),cy:"0",rx:"7",ry:"3.2",transform:"rotate(25 "+(x+6)+" 0)","class":"w"},g);
+    el("circle",{cx:String(x),cy:"0",r:"4","class":"b"},g);
+  }
+  angel("up",88,19,0); angel("down",112,23,-6); angel("up",104,27,-14); angel("down",94,31,-20);
+  host.appendChild(svg);
+  var cur=-1, top=false;
+  function place(anim){
+    var y=top?40:(cur<0?985:Y[cur]);
+    here.style.transition=anim?"transform 1s cubic-bezier(.45,0,.2,1)":"none";
+    here.style.transform="translate(0px,"+y+"px)";
+    rungs.forEach(function(r,k){ r.classList.toggle("on",k===cur&&!top); r.classList.toggle("seen",k<cur); });
+  }
+  addEventListener("igclimb",function(e){
+    host.classList.add("dark");
+    cur=e.detail.to; top=false; place(true);
+    setTimeout(function(){ host.classList.remove("dark"); },1500);
   });
-  // ground
-  var gr=el("g",{"class":"rgr",tabindex:"0",role:"button","aria-label":"ארצה: הפתיחה"});
-  el("path",{d:"M0 404 Q 11 398 22 403 T 44 402",fill:"none"},gr);
-  el("path",{d:"M5 404 l2 -6 l2 6 M17 403 l2 -7 l2 7 M30 403 l2 -6 l2 6",fill:"none"},gr);
-  el("rect",{x:"0",y:"390",width:"44",height:"30",fill:"transparent",stroke:"none"},gr);
-  // rungs
-  var rungs=[];
-  NAMES.forEach(function(nm,i){
-    var g=el("g",{"class":"rr",tabindex:"0",role:"button","aria-label":"שלב "+(i+1)+": "+nm,transform:"rotate("+TILT[i]+" 22 "+Y[i]+")"});
-    el("rect",{x:"0",y:String(Y[i]-14),width:"44",height:"28",fill:"transparent"},g);
-    el("rect",{x:String(7+XS[i]),y:String(Y[i]-3),width:"30",height:"6",rx:"3","class":"wood"},g);
-    el("circle",{cx:String(8+XS[i]),cy:String(Y[i]),r:"3","class":"knot"},g);
-    el("circle",{cx:String(36+XS[i]),cy:String(Y[i]),r:"3","class":"knot"},g);
-    rungs.push(g);
-  });
-  var orb=el("g",{"class":"rorb"}); el("circle",{cx:"22",cy:"0",r:"7",filter:"url(#glow)"},orb); el("circle",{cx:"22",cy:"0",r:"3.5","class":"core"},orb);
-  nav.appendChild(svg);
-
-  var cur=-1, max=-1, top=false, pt=null;
-  function yOf(i){ return top?SKY+1:(i<0?GROUND:Y[i]); }
-  function paint(anim){
-    orb.style.transition=anim?"transform .8s cubic-bezier(.4,1.5,.5,1)":"none";
-    orb.style.transform="translate(0px,"+yOf(cur)+"px)";
-    rungs.forEach(function(g,k){ g.classList.toggle("cur",k===cur&&!top); g.classList.toggle("seen",k<=max); });
-    gr.classList.toggle("cur",cur<0&&!top); sky.classList.toggle("cur",top);
-  }
-  function say(text,ms){
-    var r=svg.getBoundingClientRect(), y=r.top+yOf(cur)*(r.height/H);
-    pill.textContent=text; pill.style.top=Math.max(8,y-16)+"px"; pill.classList.add("show");
-    clearTimeout(pt); pt=setTimeout(function(){ pill.classList.remove("show"); },ms||1800);
-  }
-  function flash(){ nav.classList.add("lit"); setTimeout(function(){ nav.classList.remove("lit"); },1900); }
-  function go(k){
-    if(window.__isAll&&window.__isAll()) return;
-    var from=cur; top=false; cur=k; max=Math.max(max,k); paint(true); flash();
-    say(k>from?"עולים ↑ "+(k<0?"":"לשלב "+(k+1)+" · "+NAMES[k]):k<from?"יורדים ↓ "+(k<0?"לפתיחה":"לשלב "+(k+1)+" · "+NAMES[k]):(k<0?"הפתיחה":NAMES[k]));
-    T("טיפס בסולם",(from<0?"ארצה":from+1)+" → "+(k<0?"ארצה":k+1));
-    setTimeout(function(){ if(window.__showStep) window.__showStep(k,"ladder"); },500);
-  }
-  function bind(g,k){
-    g.addEventListener("click",function(){ go(k); });
-    g.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(k); } });
-  }
-  rungs.forEach(function(g,k){ bind(g,k); }); bind(gr,-1);
-  addEventListener("igstep",function(e){
-    var n=e.detail.n, how=e.detail.how;
-    cur=n; max=Math.max(max,n); top=false; paint(how==="up");
-    if(how==="up"){ flash(); say("שלב "+(n+1)+" ✓ "+(MSG[n]||""),2200); }
-  });
-  addEventListener("igtop",function(){ top=true; max=NAMES.length-1; paint(true); flash(); say("הגעת לראש הסולם! 🎉",3000); });
-  // Darker when the "continue" button is on screen: time to climb
-  var nexts=[].slice.call(document.querySelectorAll(".bridge"));
-  function ready(){
-    var on=nexts.some(function(br){
-      if(br.offsetParent===null||br.classList.contains("head")||br.classList.contains("free")) return false;
-      var r=br.getBoundingClientRect(); return r.top<innerHeight-40&&r.bottom>0;
-    });
-    nav.classList.toggle("ready",on);
-  }
-  addEventListener("scroll",ready,{passive:true}); addEventListener("igstep",function(){ setTimeout(ready,700); });
-  paint(false); ready();
+  addEventListener("igstep",function(e){ if(cur!==e.detail.n){ cur=e.detail.n; top=false; place(false); } });
+  addEventListener("igtop",function(){ host.classList.add("dark"); top=true; place(true); setTimeout(function(){ host.classList.remove("dark"); },2200); });
+  place(false);
 })();
 </script>

@@ -105,7 +105,29 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .rope .rorb .core{fill:#fff}
 .rpill{position:fixed;left:46px;z-index:61;background:#2a1d63;color:#fff;font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:12px;opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s;pointer-events:none;max-width:62vw;box-shadow:0 6px 16px rgba(42,29,99,.3)}
 .rpill.show{opacity:1;transform:none}
-@media (max-width:700px){.wrap{margin-left:30px!important}}
+.bgl{position:fixed;inset:0;z-index:0;pointer-events:none;display:flex;justify-content:center}
+.bgl svg{height:100vh;width:min(46vw,300px);overflow:visible}
+.wrap{position:relative;z-index:1}
+.bl-lad{opacity:.11;animation:breathe 7s ease-in-out infinite;transition:opacity .6s}
+.bgl.dark .bl-lad{opacity:.5;animation:none}
+@keyframes breathe{0%,100%{opacity:.06}50%{opacity:.12}}
+.bl-rail{stroke:#3d2f7a;stroke-width:5;stroke-linecap:round;fill:none}
+.bl-rung{stroke:#3d2f7a;stroke-width:4.5;stroke-linecap:round}
+.bl-rung.seen{stroke:#f07a32}
+.bl-rung.on{stroke:#f07a32;stroke-width:6}
+.bl-here ellipse{fill:#ffb27c;opacity:.35;transition:opacity .6s}
+.bgl.dark .bl-here ellipse{opacity:.8}
+.bl-sky{fill:#ffe08a;opacity:.25}
+.bl-ground{stroke:#4eabbc;stroke-width:4;fill:none;opacity:.25}
+.bl-angel{opacity:.4;animation-timing-function:linear;animation-iteration-count:infinite}
+.bl-angel .b{fill:#ffd36e}
+.bl-angel .w{fill:#fff3cf}
+.bl-angel.up{animation-name:angelUp}
+.bl-angel.down{animation-name:angelDown}
+@keyframes angelUp{0%{transform:translateY(980px);opacity:0}10%{opacity:.45}90%{opacity:.45}100%{transform:translateY(60px);opacity:0}}
+@keyframes angelDown{0%{transform:translateY(60px);opacity:0}10%{opacity:.4}90%{opacity:.4}100%{transform:translateY(980px);opacity:0}}
+.leaving{transition:opacity .6s ease,filter .6s ease,transform .6s ease;opacity:0!important;filter:blur(2px);transform:translateY(-10px)}
+@media (prefers-reduced-motion: reduce){.bl-lad,.bl-angel{animation:none}.bl-angel{display:none}}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
