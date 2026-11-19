@@ -23,6 +23,9 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .w p{margin:0;font-size:.95rem;color:var(--muted)}
 .body .cal{flex-wrap:wrap;overflow:visible}
 .body .cal .day{flex:1 1 130px}
+.wall{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+.wl{margin:0;font-weight:700;font-size:.9rem;color:var(--teal)}
+.wb{margin:4px 0;font-size:.95rem}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
