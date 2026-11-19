@@ -45,8 +45,20 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .gated{display:none!important}
 .next{display:block;margin:8px auto 0;font:inherit;font-weight:800;font-size:1.05rem;border:none;border-radius:14px;padding:12px 22px;background:linear-gradient(90deg,#ff8f4f,#f07a32);color:#2a1d63;cursor:pointer;box-shadow:0 6px 18px rgba(240,122,50,.3)}
 .next small{display:block;font-weight:600;font-size:.88rem;margin-top:2px}
-.bridge.done .next{display:none}
+.bridge .bt{display:none}
+.bridge .back{display:none;margin:0 auto 6px;font:inherit;font-size:.82rem;border:none;background:none;color:var(--muted);cursor:pointer;text-decoration:underline}
+.bridge.head .next{display:none}
+.bridge.head .bt{display:block;font-family:var(--display);font-size:1.05rem}
+.bridge.head .back{display:block}
+.bridge.free .next,.bridge.free .back{display:none}
+.bridge.free .bt{display:block}
 .showall{display:block;text-align:center;color:#d9d1f2;font-size:.85rem;margin-top:6px}
+@keyframes enterIn{from{opacity:0;transform:translateY(26px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.enter{animation:enterIn .6s cubic-bezier(.2,.8,.2,1) both}
+.rise{animation:riseIn .55s ease both}
+.bridge.head.enter .bt{animation:riseIn .5s ease both}
+@media (prefers-reduced-motion: reduce){.enter,.rise{animation:none}}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}

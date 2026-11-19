@@ -457,6 +457,7 @@ document.addEventListener("DOMContentLoaded",function(){
     cheer.textContent=MSG[n-1]||""; cheer.classList.add("show");
     clearTimeout(ct); ct=setTimeout(function(){ cheer.classList.remove("show"); },2600);
   }
+  window.__ladderLight=light;
   var bridges=[].slice.call(document.querySelectorAll(".bridge"));
   function check(){
     var lim=innerHeight*0.65, n=0;
@@ -466,47 +467,73 @@ document.addEventListener("DOMContentLoaded",function(){
   addEventListener("scroll",check,{passive:true}); check();
 })();
 
-/* Step by step: each part opens after the reader finishes the one before */
+/* Step by step: one part on screen at a time; "continue" closes the part before */
 (function(){
   var wrap=document.querySelector(".wrap");
   var kids=[].slice.call(wrap.children);
-  var groups=[], cur=null, bridges=[];
+  var intro=[], groups=[], cur=intro, bridges=[];
   kids.forEach(function(el){
     if(el.classList&&el.classList.contains("bridge")){ bridges.push(el); cur=[]; groups.push(cur); return; }
-    if(cur) cur.push(el);
+    cur.push(el);
   });
   if(!bridges.length) return;
   var T=function(w,d){ if(window.__track) window.__track(w,d||""); };
-  var opened=0;
-  function setHidden(i,h){ groups[i].forEach(function(el){ el.classList.toggle("gated",h); }); }
+  var c=-1, all=false;
   bridges.forEach(function(br,i){
     var label=br.lastChild.textContent.replace(/^\s*↓\s*/,"");
     br.lastChild.textContent="";
+    var t=document.createElement("span"); t.className="bt"; t.textContent=label; br.appendChild(t);
     var b=document.createElement("button"); b.type="button"; b.className="next";
     b.innerHTML="להמשיך ↓<small></small>"; b.querySelector("small").textContent=label;
     br.appendChild(b);
-    b.addEventListener("click",function(){ openTo(i,true); T("המשיך לשלב", String(i+2)); });
-    if(i>0) br.classList.add("gated");
-    setHidden(i,true);
+    b.addEventListener("click",function(){ show(i); T("המשיך לשלב", String(i+2)); });
+    var back=document.createElement("button"); back.type="button"; back.className="back"; back.textContent="↑ לשלב הקודם";
+    br.insertBefore(back,br.firstChild);
+    back.addEventListener("click",function(){ show(i-1); });
   });
-  function openTo(i,scroll){
-    for(var k=0;k<=i;k++){
-      if(k>=opened){ setHidden(k,false); bridges[k].classList.add("done"); if(bridges[k+1]) bridges[k+1].classList.remove("gated"); }
-    }
-    opened=Math.max(opened,i+1);
+  function vis(list,v){ list.forEach(function(el){ el.classList.toggle("gated",!v); }); }
+  function show(n){
+    if(all) return;
+    c=n;
+    vis(intro,c===-1);
+    groups.forEach(function(g,k){ vis(g,k===c); });
+    bridges.forEach(function(br,k){
+      br.classList.toggle("gated",!(k===c||k===c+1));
+      br.classList.toggle("head",k===c);
+      br.classList.toggle("on",k<=c);
+    });
+    if(window.__ladderLight) window.__ladderLight(c+2);
+    animate(c===-1?intro:groups[c].concat([bridges[c]]));
+    var top=c===-1?0:bridges[c].getBoundingClientRect().top+scrollY-24;
+    scrollTo({top:top,behavior:"smooth"});
     dispatchEvent(new Event("scroll"));
-    if(scroll) setTimeout(function(){ var t=groups[i][0]; if(t) t.scrollIntoView({behavior:"smooth",block:"start"}); },60);
   }
-  // Menu links and the "show everything" link open what they need
+  // Entrance animation: the part rises in, its pieces one after another
+  function animate(list){
+    list.forEach(function(el){
+      if(!el||!el.classList) return;
+      el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
+      [].slice.call(el.children).slice(0,10).forEach(function(ch,i){
+        ch.classList.remove("rise"); void ch.offsetWidth; ch.style.animationDelay=(120+i*80)+"ms"; ch.classList.add("rise");
+      });
+    });
+  }
   function groupOf(el){ for(var i=0;i<groups.length;i++){ if(groups[i].some(function(g){ return g===el||g.contains(el); })) return i; } return -1; }
   document.querySelectorAll('.toc a[href^="#"]').forEach(function(a){
     a.addEventListener("click",function(e){
+      if(all) return;
       var t=document.querySelector(a.getAttribute("href")); if(!t) return;
       var g=groupOf(t); if(g<0) return;
-      e.preventDefault(); openTo(g,false); setTimeout(function(){ t.scrollIntoView({behavior:"smooth"}); },60);
+      e.preventDefault(); show(g);
     });
   });
-  var all=document.getElementById("showall");
-  if(all) all.addEventListener("click",function(e){ e.preventDefault(); openTo(groups.length-1,false); T("פתח הכול",""); all.remove(); });
+  var sa=document.getElementById("showall");
+  if(sa) sa.addEventListener("click",function(e){
+    e.preventDefault(); all=true;
+    vis(intro,true); groups.forEach(function(g){ vis(g,true); });
+    bridges.forEach(function(br){ br.classList.remove("gated","head"); br.classList.add("free"); });
+    T("פתח הכול",""); sa.remove();
+  });
+  show(-1);
 })();
 </script>
