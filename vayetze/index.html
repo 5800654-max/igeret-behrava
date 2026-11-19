@@ -343,6 +343,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
             <div class="qk" role="listitem"><span class="n">קמפוס שלוחי החינוך, חולון · ימי חמישי</span><p>כ"א טבת (31.12) · י"א אדר א' (18.2) · כ"ט ניסן (6.5)</p></div>
             <div class="qk" role="listitem"><span class="n">קמפוס שלוחי החינוך, חיפה · ימי שלישי</span><p>י"ט טבת (29.12) · ט' אדר א' (16.2) · כ"ז ניסן (4.5)</p></div>
           </div>
+          <p><strong>התוכנית בנויה כרצף של שלושה ימים:</strong> נרשמים לשלושתם, בקמפוס אחד.</p>
           <p class="act">מה לעשות: לספר לצוות המלמדים על התוכנית, ולעודד אותם להירשם בקמפוס הקרוב.</p>
           <div class="kit" data-kit="beit"></div>
         </div>
@@ -543,10 +544,8 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
   var KITS={
     tomchei:{events:[D(2026,11,25,null,null,'"תומך תמימים": מפגש היכרות מקוון למחנכי כיתות ח\'',"מקוון","",'ט"ו כסלו')],
       msgs:[]},
-    beit:{events:[
-        D(2026,12,31,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חולון","",'כ"א טבת'),D(2027,2,18,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חולון","",'י"א אדר א\''),D(2027,5,6,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חולון","",'כ"ט ניסן'),
-        D(2026,12,29,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חיפה","",'י"ט טבת'),D(2027,2,16,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חיפה","",'ט\' אדר א\''),D(2027,5,4,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חיפה","",'כ"ז ניסן')],
-      msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\n"בית המדרש" של הרשת: שלושה ימי למידה שמקפיצים את שלוחי החינוך, מוכרים לגמול השתלמות של 30 שעות.\n\nנושאי הלמידה: נכנסים ומרגישים בבית · יש לאן לצמוח · צוות שאפשר לסמוך עליו · מבנים שצרים מהחלום · סדר שמחזיק את הצמיחה · הקפיצה הבאה.\n\nקמפוס חולון (ימי חמישי): כ"א טבת 31.12 · י"א אדר א\' 18.2 · כ"ט ניסן 6.5\nקמפוס חיפה (ימי שלישי): י"ט טבת 29.12 · ט\' אדר א\' 16.2 · כ"ז ניסן 4.5\n\nמי שמעוניין להירשם, כתבו לי.'}]},
+    beit:{events:[],groups:[{label:"קמפוס חולון (ימי חמישי)",events:[D(2026,12,31,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חולון","",'כ"א טבת'),D(2027,2,18,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חולון","",'י"א אדר א\''),D(2027,5,6,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חולון","",'כ"ט ניסן')]},{label:"קמפוס חיפה (ימי שלישי)",events:[D(2026,12,29,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חיפה","",'י"ט טבת'),D(2027,2,16,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חיפה","",'ט\' אדר א\''),D(2027,5,4,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חיפה","",'כ"ז ניסן')]}],
+      msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\n"בית המדרש" של הרשת: שלושה ימי למידה שמקפיצים את שלוחי החינוך, מוכרים לגמול השתלמות של 30 שעות.\n\nנושאי הלמידה: נכנסים ומרגישים בבית · יש לאן לצמוח · צוות שאפשר לסמוך עליו · מבנים שצרים מהחלום · סדר שמחזיק את הצמיחה · הקפיצה הבאה.\n\nקמפוס חולון (ימי חמישי): כ"א טבת 31.12 · י"א אדר א\' 18.2 · כ"ט ניסן 6.5\nקמפוס חיפה (ימי שלישי): י"ט טבת 29.12 · ט\' אדר א\' 16.2 · כ"ז ניסן 4.5\n\nנרשמים לשלושת הימים, בקמפוס אחד: התוכנית בנויה כרצף.\nמי שמעוניין להירשם, כתבו לי.'}]},
     rakaz:{events:[D(2026,12,22,11,19,RAKAZ,"מכללת שאנן","",'י"ב טבת'),D(2027,2,4,11,19,RAKAZ,"מכללת תלפיות","",'כ"ז שבט'),D(2027,3,29,11,19,RAKAZ,'כפר חב"ד',"",'כ\' אדר ב\'')],
       msgs:[{to:"לרכז החינוך החברתי-חסידי",text:'שלום לרכז היקר!\nנפתחת תוכנית ההשתלמות וההכשרה לתפקיד הרכז: תוכנית ייחודית ומקצועית, שתהפוך את הרכז ממפיק אירועים למנהיג חברתי חסידי.\n\nימי ההכשרה, 11:00–19:00:\nשלישי, י"ב טבת (22.12) – מכללת שאנן\nחמישי, כ"ז שבט (4.2) – מכללת תלפיות\nשני, כ\' אדר ב\' (29.3) – כפר חב"ד\n\nנא לשריין ביומן כבר עכשיו.'},
             {to:"ליד ימין / למזכירות",text:'לתשומת לבך:\nרכז החינוך החברתי-חסידי ישתתף בהשתלמות והכשרה לתפקיד בימים:\nשלישי 22.12 · חמישי 4.2 · שני 29.3 (11:00–19:00)\n\nנא לשריין מילוי מקום לימים אלה כבר עכשיו, ולדווח על ההיעדרות כהשתלמות בשכר.'}]},
@@ -582,22 +581,22 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
   function ttl(e){ return e.t+(e.heb?" · "+e.heb:""); }
   document.querySelectorAll(".kit").forEach(function(box){
     var k=KITS[box.dataset.kit]; if(!k) return;
-    var h="";
-    if(k.events.length){
-      h+='<div class="kitrow"><span class="kt">📅 ליומן</span><button type="button" class="ghost mini" data-ics>'+(k.events.length>1?"כל המועדים":"להוסיף")+' (אייפון / אאוטלוק)</button></div>';
-      h+='<div class="glinks">'+k.events.map(function(e,i){return '<a href="'+gcal(e)+'" target="_blank" rel="noopener" data-g="'+i+'">'+fmt(e)+' ביומן גוגל</a>'}).join("")+'</div>';
-      h+='<p class="muted kn">ביומן גוגל אפשר להוסיף מוזמנים: מורים, הרכז, יד ימין. את קובץ היומן אפשר גם להעביר להם.</p>';
-    }
+    var h="", groups=k.groups||(k.events.length?[{label:"ליומן",events:k.events}]:[]);
+    groups.forEach(function(g,gi){
+      h+='<div class="kitrow"><span class="kt">📅 '+g.label+'</span><button type="button" class="ghost mini" data-ics="'+gi+'">'+(g.events.length>1?"כל "+(g.events.length===3?"שלושת":g.events.length)+" המועדים":"להוסיף")+' (אייפון / אאוטלוק)</button></div>';
+      h+='<div class="glinks">'+g.events.map(function(e,i){return '<a href="'+gcal(e)+'" target="_blank" rel="noopener" data-g="'+gi+'-'+i+'">'+(k.groups?fmt({heb:e.heb,d:e.d,m:e.m}):fmt(e))+' ביומן גוגל</a>'}).join("")+'</div>';
+    });
+    if(groups.length) h+='<p class="muted kn">'+(k.groups?'בגוגל מוסיפים כל מועד בנפרד, את שלושתם. ':'')+'ביומן גוגל אפשר להוסיף מוזמנים: מורים, הרכז, יד ימין. את קובץ היומן אפשר גם להעביר להם.</p>';
     k.msgs.forEach(function(m,i){
       h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="ghost mini" data-cp="'+i+'">להעתיק</button><a class="mini" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
     });
     box.innerHTML=h;
-    var ib=box.querySelector("[data-ics]");
-    if(ib) ib.addEventListener("click",function(){
-      var blob=new Blob([ics(k.events)],{type:"text/calendar;charset=utf-8"}), a=document.createElement("a");
-      a.href=URL.createObjectURL(blob); a.download="behrava-"+box.dataset.kit+".ics"; document.body.appendChild(a); a.click(); a.remove();
-      T("הוסיף ליומן", box.dataset.kit+" (קובץ)"); ib.textContent="ירד ✓";
-    });
+    box.querySelectorAll("[data-ics]").forEach(function(ib){ ib.addEventListener("click",function(){
+      var g=groups[+ib.dataset.ics];
+      var blob=new Blob([ics(g.events)],{type:"text/calendar;charset=utf-8"}), a=document.createElement("a");
+      a.href=URL.createObjectURL(blob); a.download="behrava-"+box.dataset.kit+(groups.length>1?"-"+ib.dataset.ics:"")+".ics"; document.body.appendChild(a); a.click(); a.remove();
+      T("הוסיף ליומן", box.dataset.kit+" "+g.label+" (קובץ)"); ib.textContent="ירד ✓";
+    }); });
     box.querySelectorAll("[data-g]").forEach(function(a){ a.addEventListener("click",function(){ T("הוסיף ליומן", box.dataset.kit+" (גוגל) "+a.textContent); }) });
     box.querySelectorAll("[data-cp]").forEach(function(b){ b.addEventListener("click",function(){ var m=k.msgs[b.dataset.cp];
       (navigator.clipboard?navigator.clipboard.writeText(m.text):Promise.reject()).then(function(){b.textContent="הועתק ✓"},function(){b.textContent="לא הועתק"});
