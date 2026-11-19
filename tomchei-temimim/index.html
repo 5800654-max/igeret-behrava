@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>תומך תמימים · הרשמה למפגש ההיכרות</title>
+<title>תומך תמימים · מפגש היכרות למחנכי כיתות ח'</title>
 <meta property="og:title" content="תומך תמימים | הרשמה למפגש היכרות למחנכי כיתות ח'">
 <meta property="og:description" content="רשת אהלי יוסף יצחק · האגף לחינוך יסודי - בנים">
 <meta property="og:image" content="https://igeret-behrava.vercel.app/tomchei-temimim/cover.png">
@@ -202,6 +202,7 @@ body{margin:0}[hidden]{display:none!important}
 input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box}
 .sendnow{font:inherit;font-weight:700;border:none;border-radius:12px;padding:12px 26px;background:var(--orange);color:#2a1d63;cursor:pointer;font-size:1.1rem}
 .sendnow:disabled{opacity:.7}
+.tt-video:empty{display:none}
 </style>
 </head>
 <body>
@@ -215,36 +216,22 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     <p class="sub">תוכנית ליווי לתלמידי כיתות ח' ולהוריהם לקראת הישיבה</p>
   </section>
   <section class="panel" id="form">
-    <h2>הרשמה למפגש ההיכרות</h2>
+    <h2>מפגש היכרות למחנכי כיתות ח'</h2>
     <p>"תומך תמימים" היא תוכנית ליווי לתלמידי כיתות ח' ולהוריהם, כדי שייקלטו בצורה מיטבית בישיבה. לא רק קליטה: גם כלים להתאקלמות ולהצלחה בישיבה.</p>
-    <p><strong>מפגש היכרות מקוון לכל מחנכי כיתות ח' ברשת: יום רביעי, ט"ו בכסלו (25.11).</strong> השעה וקישור המפגש יישלחו אליכם אחרי ההרשמה.</p>
-    <div class="formrow">
-      <div><label class="q" for="t-name">שם מלא</label><input id="t-name" autocomplete="name" maxlength="60"></div>
-      <div><label class="q" for="t-inst">מוסד ועיר</label><input id="t-inst" autocomplete="organization" maxlength="80"></div>
-      <div><label class="q" for="t-phone">נייד</label><input id="t-phone" inputmode="tel" autocomplete="tel" maxlength="20"></div>
-      <div><label class="q" for="t-mail">מייל</label><input id="t-mail" inputmode="email" autocomplete="email" maxlength="80"></div>
-      <div><label class="q" for="t-kids">מספר התלמידים בכיתה ח'</label><input id="t-kids" inputmode="numeric" maxlength="4"></div>
-    </div>
-    <div><button type="button" class="sendnow" id="t-send">להרשמה</button></div>
-    <p class="status" id="t-status"></p>
+    <div id="tt-video" class="tt-video"></div>
+    <p><strong>השלב הראשון: מפגש היכרות מקוון לכל מחנכי כיתות ח' ברשת, ביום רביעי, ט"ו בכסלו (25.11).</strong></p>
+    <p style="text-align:center;margin:10px 0"><a class="sendnow" href="https://holchim-rachok.vercel.app/tomech" id="tt-reg" style="text-decoration:none;display:inline-block">להרשמה למפגש ←</a></p>
   </section>
   <section class="sign"><span class="n">האגף לחינוך יסודי - בנים</span><span class="muted">רשת אהלי יוסף יצחק ליובאוויטש בארץ הקודש</span></section>
 </div>
 <script>
 (function(){
-  var URL_='https://script.google.com/macros/s/AKfycbw-GjxvO6u1KoxGlAFgXl-W30OwkEsooqXbS0qrD4GWhcCx_ZfBjNKqcIRBkP-ZPMf7/exec';
-  var $=function(id){return document.getElementById(id)};
-  $("t-send").addEventListener("click",function(){
-    var n=$("t-name").value.trim(),i=$("t-inst").value.trim(),p=$("t-phone").value.trim(),m=$("t-mail").value.trim(),k=$("t-kids").value.trim();
-    if(!n||!i||!p){ $("t-status").textContent="צריך למלא שם, מוסד ונייד."; return; }
-    var q="a=ev&w="+encodeURIComponent("תומך תמימים")+"&what="+encodeURIComponent("הרשמה: תומך תמימים")+
-      "&n="+encodeURIComponent(n)+"&i="+encodeURIComponent(i)+"&d="+encodeURIComponent("נייד: "+p+" | מייל: "+m+" | תלמידים בכיתה ח': "+k);
-    var u=URL_+"?"+q, sent=false;
-    try{ sent=navigator.sendBeacon&&navigator.sendBeacon(u); }catch(e){}
-    if(!sent){ try{ fetch(u,{method:"POST",mode:"no-cors",keepalive:true}); }catch(e){ (new Image()).src=u; } }
-    this.textContent="נרשמת ✓"; this.disabled=true;
-    $("t-status").textContent="תודה! ההרשמה התקבלה. השעה וקישור המפגש יישלחו אליך.";
-  });
+  var U="https://script.google.com/macros/s/AKfycbw-GjxvO6u1KoxGlAFgXl-W30OwkEsooqXbS0qrD4GWhcCx_ZfBjNKqcIRBkP-ZPMf7/exec";
+  function ev(what){ var q="a=ev&w="+encodeURIComponent("תומך תמימים")+"&what="+encodeURIComponent(what)+"&n="+encodeURIComponent("מחנך");
+    try{ if(navigator.sendBeacon&&navigator.sendBeacon(U+"?"+q)) return; }catch(e){} try{ (new Image()).src=U+"?"+q; }catch(e){} }
+  ev("נכנס לדף תומך תמימים");
+  document.getElementById("tt-reg").addEventListener("click",function(){ ev("לחץ על הרשמה לתומך תמימים"); });
+  var v=document.querySelector("#tt-video video"); if(v) v.addEventListener("play",function(){ ev("צפה בסרטון תומך תמימים"); },{once:true});
 })();
 </script>
 </body>
