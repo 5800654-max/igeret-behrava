@@ -1,5 +1,15 @@
 <div class="climb" aria-hidden="true"><span id="climb"></span></div>
-<div class="ladder" id="ladder" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<button type="button" class="lbtn" id="lbtn" aria-label="הסולם: לעלות ולרדת בין חלקי האיגרת"><span class="lic">🪜</span><span id="lstep">1/7</span></button>
+<div class="lpanel" id="lpanel" hidden>
+  <div class="lcard" role="dialog" aria-label="סולם האיגרת">
+    <button type="button" class="lclose" id="lclose" aria-label="סגירה">✕</button>
+    <p class="lhead">"סֻלָּם מֻצָּב אַרְצָה וְרֹאשׁוֹ מַגִּיעַ הַשָּׁמָיְמָה"</p>
+    <div class="sky" id="sky"><span class="star s1">✦</span><span class="star s2">✦</span><span class="star s3">✦</span>השמימה</div>
+    <div class="lbox" id="lbox"><div class="rail r1"></div><div class="rail r2"></div><span class="orb" id="orb"></span></div>
+    <button type="button" class="ground" id="ground">ארצה · הפתיחה</button>
+    <p class="lmsg" id="lmsg">"עולים ויורדים בו": לוחצים על שלב, ועוברים אליו</p>
+  </div>
+</div>
 <div class="cheer" id="cheer" role="status" aria-live="polite"></div>
 <div class="wrap" dir="rtl" lang="he">
 
@@ -21,6 +31,7 @@
     <a href="#" id="showall" class="showall">להציג את כל האיגרת בבת אחת</a>
   </section>
 
+  <p class="bridge"><span class="st">שלב 1 בסולם</span>↓ מוצב ארצה, וראשו מגיע השמימה: הסולם של המנהל</p>
   <!-- Torah: the ladder -->
   <section id="sulam" data-track="פרשת השבוע">
     <span class="tag"><b>"שרי אלפים"</b><span><i>הרחבה</i> בהנהגה</span></span>
@@ -442,30 +453,8 @@ document.addEventListener("DOMContentLoaded",function(){
     var who=me&&me.n?"הרב "+me.n+", ":"";
     document.getElementById("tk-t").textContent=who+(min>=1?"תודה על "+(min===1?"הדקה":min+" הדקות")+" שהקדשת. ":"")+"הזמן שאתה מקדיש לקריאה הוא מתנה גמורה למוסד שלך. אתה משקיע בדבר הנכון.";
     if(window.__track) window.__track("הגיע לסוף", min+" דקות");
-    var ch=document.getElementById("cheer"); if(ch){ ch.textContent="הגעת לראש הסולם! 🎉"; ch.classList.add("show"); setTimeout(function(){ ch.classList.remove("show"); },3000); }
+    dispatchEvent(new CustomEvent("igtop"));
   }); },{threshold:.3}).observe(document.getElementById("thanks")); }catch(e){}
-})();
-
-/* The ladder: every step you reach lights up, with a word of encouragement */
-(function(){
-  var rungs=[].slice.call(document.querySelectorAll("#ladder i")).reverse(); // bottom rung first
-  var cheer=document.getElementById("cheer"), ct=null;
-  var MSG=["","שלב 2 ✓ שמחים יחד","שלב 3 ✓ כלים חדשים למוסד שלך","שלב 4 ✓ חצי סולם, יישר כוח!","שלב 5 ✓ מציצים למשפחה","שלב 6 ✓ כמעט בראש הסולם","שלב 7 ✓ השלב האחרון בסולם"];
-  var reached=1;
-  function light(n){
-    if(n<=reached) return; reached=n;
-    rungs.forEach(function(r,i){ r.classList.toggle("on", i<n); });
-    cheer.textContent=MSG[n-1]||""; cheer.classList.add("show");
-    clearTimeout(ct); ct=setTimeout(function(){ cheer.classList.remove("show"); },2600);
-  }
-  window.__ladderLight=light;
-  var bridges=[].slice.call(document.querySelectorAll(".bridge"));
-  function check(){
-    var lim=innerHeight*0.65, n=0;
-    bridges.forEach(function(br){ if(br.offsetParent!==null && br.getBoundingClientRect().top<lim){ n++; br.classList.add("on"); } });
-    if(n) light(n+1);
-  }
-  addEventListener("scroll",check,{passive:true}); check();
 })();
 
 /* Step by step: one part on screen at a time; "continue" closes the part before */
@@ -487,13 +476,13 @@ document.addEventListener("DOMContentLoaded",function(){
     var b=document.createElement("button"); b.type="button"; b.className="next";
     b.innerHTML="להמשיך ↓<small></small>"; b.querySelector("small").textContent=label;
     br.appendChild(b);
-    b.addEventListener("click",function(){ show(i); T("המשיך לשלב", String(i+2)); });
+    b.addEventListener("click",function(){ show(i,"up"); T("המשיך לשלב", String(i+1)); });
     var back=document.createElement("button"); back.type="button"; back.className="back"; back.textContent="↑ לשלב הקודם";
     br.insertBefore(back,br.firstChild);
-    back.addEventListener("click",function(){ show(i-1); });
+    back.addEventListener("click",function(){ show(i-1,"down"); });
   });
   function vis(list,v){ list.forEach(function(el){ el.classList.toggle("gated",!v); }); }
-  function show(n){
+  function show(n,how){
     if(all) return;
     c=n;
     vis(intro,c===-1);
@@ -503,7 +492,7 @@ document.addEventListener("DOMContentLoaded",function(){
       br.classList.toggle("head",k===c);
       br.classList.toggle("on",k<=c);
     });
-    if(window.__ladderLight) window.__ladderLight(c+2);
+    dispatchEvent(new CustomEvent("igstep",{detail:{n:c,how:how||""}}));
     animate(c===-1?intro:groups[c].concat([bridges[c]]));
     var top=c===-1?0:bridges[c].getBoundingClientRect().top+scrollY-24;
     scrollTo({top:top,behavior:"smooth"});
@@ -535,6 +524,70 @@ document.addEventListener("DOMContentLoaded",function(){
     bridges.forEach(function(br){ br.classList.remove("gated","head"); br.classList.add("free"); });
     T("פתח הכול",""); sa.remove();
   });
+  window.__showStep=function(n,how){ show(n,how); };
+  window.__isAll=function(){ return all; };
   show(-1);
+})();
+
+/* Jacob's ladder: going up and down between the parts of the letter */
+(function(){
+  var NAMES=["הסולם","מזל טוב","שלוש תוכניות",'יו"ד שבט',"מהשטח","החידה","יד ימין"];
+  var MSG=["הסולם של המנהל","שמחים יחד","כלים חדשים למוסד שלך","חצי סולם, יישר כוח!","מציצים למשפחה","כמעט בראש הסולם","השלב האחרון בסולם"];
+  var box=document.getElementById("lbox"), orb=document.getElementById("orb"), panel=document.getElementById("lpanel");
+  var lstep=document.getElementById("lstep"), lmsg=document.getElementById("lmsg"), btn=document.getElementById("lbtn"), ground=document.getElementById("ground");
+  var HINT=lmsg.textContent;
+  var T=function(w,d){ if(window.__track) window.__track(w,d||""); };
+  var rungs=[], cur=-1, max=-1, auto=null, top=false;
+  for(var i=NAMES.length-1;i>=0;i--){
+    var r=document.createElement("button"); r.type="button"; r.className="rung"; r.dataset.i=i;
+    r.innerHTML='<span class="rn">'+(i+1)+'</span><span class="rl"></span>'; r.querySelector(".rl").textContent=NAMES[i];
+    box.appendChild(r); rungs[i]=r;
+  }
+  function target(i){ return top?document.getElementById("sky"):(i<0?ground:rungs[i]); }
+  function place(i,anim){
+    var tg=target(i), bb=box.getBoundingClientRect(), tb=tg.getBoundingClientRect();
+    orb.style.transition=anim?"top .75s cubic-bezier(.4,1.4,.5,1)":"none";
+    orb.style.top=(tb.top-bb.top+tb.height/2-12)+"px";
+  }
+  function paint(){
+    rungs.forEach(function(r,k){ r.classList.toggle("cur",k===cur&&!top); r.classList.toggle("seen",k<=max); });
+    ground.classList.toggle("cur",cur<0&&!top);
+    lstep.textContent=top?"🌟":(cur<0?"ארצה":(cur+1)+"/"+NAMES.length);
+    btn.classList.toggle("top",top);
+  }
+  function open(){ panel.hidden=false; requestAnimationFrame(function(){ panel.classList.add("show"); place(cur,false); }); }
+  function close(){ panel.classList.remove("show"); clearTimeout(auto); setTimeout(function(){ panel.hidden=true; },250); }
+  btn.addEventListener("click",function(){ open(); lmsg.textContent=HINT; T("פתח את הסולם",""); });
+  document.getElementById("lclose").addEventListener("click",close);
+  panel.addEventListener("click",function(e){ if(e.target===panel) close(); });
+  function go(k){
+    if(window.__isAll&&window.__isAll()){ close(); return; }
+    var from=cur; top=false;
+    lmsg.textContent=k>from?"עולים ↑ "+(k<0?"":"לשלב "+(k+1)):k<from?"יורדים ↓ "+(k<0?"ארצה, לפתיחה":"לשלב "+(k+1)):"כאן אתה נמצא";
+    cur=k; max=Math.max(max,k); paint(); place(k,true);
+    T("טיפס בסולם", (from<0?"ארצה":from+1)+" → "+(k<0?"ארצה":k+1));
+    setTimeout(function(){ close(); if(window.__showStep) window.__showStep(k,"ladder"); },850);
+  }
+  rungs.forEach(function(r,k){ r.addEventListener("click",function(){ go(k); }); });
+  ground.addEventListener("click",function(){ go(-1); });
+  // Every move in the letter moves the light. Going up with "continue" shows the climb for a moment.
+  addEventListener("igstep",function(e){
+    var n=e.detail.n, how=e.detail.how, from=cur;
+    cur=n; max=Math.max(max,n); top=false; paint();
+    if(how==="up"){
+      open(); place(from,false);
+      lmsg.textContent="שלב "+(n+1)+" ✓ "+(MSG[n]||"");
+      setTimeout(function(){ place(n,true); },120);
+      clearTimeout(auto); auto=setTimeout(close,1500);
+    }
+  });
+  addEventListener("igtop",function(){
+    top=true; max=NAMES.length-1; paint();
+    open(); place(cur,false); lmsg.textContent="הגעת לראש הסולם! 🎉";
+    setTimeout(function(){ place(cur,true); },150);
+    clearTimeout(auto); auto=setTimeout(close,2300);
+  });
+  addEventListener("resize",function(){ if(!panel.hidden) place(cur,false); });
+  paint();
 })();
 </script>

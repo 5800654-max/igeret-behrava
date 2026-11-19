@@ -59,6 +59,32 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .rise{animation:riseIn .55s ease both}
 .bridge.head.enter .bt{animation:riseIn .5s ease both}
 @media (prefers-reduced-motion: reduce){.enter,.rise{animation:none}}
+.lbtn{position:fixed;left:12px;bottom:14px;z-index:60;display:flex;align-items:center;gap:6px;font:inherit;font-weight:800;border:none;border-radius:999px;padding:8px 14px 8px 12px;background:#2a1d63;color:#fff;box-shadow:0 6px 18px rgba(42,29,99,.35);cursor:pointer}
+.lbtn .lic{font-size:1.2rem}
+.lbtn.top{background:linear-gradient(90deg,#ff8f4f,#f07a32);color:#2a1d63}
+.lpanel{position:fixed;inset:0;z-index:70;background:rgba(18,15,34,.55);display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;transition:opacity .25s}
+.lpanel.show{opacity:1}
+.lcard{position:relative;width:min(360px,100%);max-height:92vh;background:linear-gradient(180deg,#1d1747 0%,#3d2f7a 55%,#594e93 100%);border-radius:22px;padding:16px 16px 12px;color:#fff;text-align:center;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.lclose{position:absolute;top:8px;left:10px;background:none;border:none;color:#d9d1f2;font-size:1.1rem;cursor:pointer}
+.lhead{font-weight:700;font-size:.95rem;color:#d9d1f2;margin:4px 0 6px}
+.sky{position:relative;font-family:var(--display);font-weight:900;color:#ffe08a;font-size:1.05rem;padding:8px 0 6px;text-shadow:0 0 14px rgba(255,224,138,.8)}
+.star{position:absolute;color:#ffe08a;animation:tw 2.4s ease-in-out infinite}
+.star.s1{right:22%;top:2px;font-size:.8rem}.star.s2{left:20%;top:10px;font-size:1rem;animation-delay:.8s}.star.s3{right:40%;top:22px;font-size:.6rem;animation-delay:1.5s}
+@keyframes tw{0%,100%{opacity:.3}50%{opacity:1}}
+.lbox{position:relative;margin:0 auto;width:78%;display:flex;flex-direction:column;gap:9px;padding:6px 0}
+.rail{position:absolute;top:-6px;bottom:-6px;width:8px;border-radius:4px;background:linear-gradient(180deg,#e9c27b,#b9861f)}
+.rail.r1{right:0}.rail.r2{left:0}
+.rung{position:relative;z-index:1;display:flex;align-items:center;gap:8px;margin:0 4px;font:inherit;color:#2a1d63;background:linear-gradient(180deg,#f3d9a4,#d9ad5d);border:none;border-radius:6px;padding:6px 10px;cursor:pointer;text-align:right;box-shadow:0 2px 0 #9a6f1c;transition:transform .2s,background .3s}
+.rung:hover{transform:translateY(-1px)}
+.rung .rn{font-weight:900;width:1.4em;text-align:center}
+.rung .rl{font-weight:700;font-size:.92rem}
+.rung.seen{background:linear-gradient(180deg,#ffb27c,#f07a32)}
+.rung.cur{background:linear-gradient(180deg,#fff,#ffe08a);box-shadow:0 0 0 3px #ffe08a,0 0 18px rgba(255,224,138,.9)}
+.orb{position:absolute;left:-30px;z-index:2;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#fff 0,#ffe08a 45%,rgba(255,224,138,0) 72%);box-shadow:0 0 18px 6px rgba(255,224,138,.7);pointer-events:none}
+.ground{display:block;width:100%;margin-top:12px;padding:8px 0 4px;border:none;border-top:3px solid #4eabbc;background:linear-gradient(180deg,rgba(78,171,188,.25),rgba(78,171,188,0));font:inherit;font-weight:800;color:#a6e3ec;font-size:.95rem;cursor:pointer}
+.ground.cur{color:#fff;text-shadow:0 0 10px #ffe08a}
+.lmsg{margin:8px 0 2px;font-weight:700;color:#ffb27c;min-height:1.3em}
+@media (prefers-reduced-motion: reduce){.star{animation:none}}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
