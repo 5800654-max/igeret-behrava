@@ -17,6 +17,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 s = open(SRC, encoding="utf8").read()
 assert "/_blob/" not in s, "unmapped asset left in the page"
 t = html.escape(TITLE, quote=True)
+# A new version number whenever the cover changes, so WhatsApp fetches the new picture
+import hashlib
+cover = os.path.join(ROOT, SLUG, "cover.png")
+COVER_V = hashlib.md5(open(cover, "rb").read()).hexdigest()[:8] if os.path.exists(cover) else "1"
 
 head = f"""<!doctype html>
 <html lang="he" dir="rtl">
@@ -28,7 +32,7 @@ head = f"""<!doctype html>
 <meta property="og:type" content="article">
 <meta property="og:title" content="בהרחבה | {t}">
 <meta property="og:description" content="האגף לחינוך יסודי - בנים · רשת אהלי יוסף יצחק">
-<meta property="og:image" content="{SITE}/{SLUG}/cover.png">
+<meta property="og:image" content="{SITE}/{SLUG}/cover.png?v={COVER_V}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="{SITE}/{SLUG}">
