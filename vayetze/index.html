@@ -556,13 +556,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
       <div class="cal" tabindex="0" aria-label="לוח מועדים">
         <div class="day hl"><span class="d">י"ב כסלו</span><span class="g">ראשון 22.11</span><p>פתיחת שבוע החסידות הארצי "אורייתא", עד י"ט כסלו. <a href="https://nerot.mbakodesh.org.il/program/אורייתא" target="_blank" rel="noopener" data-link="אורייתא" style="color:var(--brand);font-weight:700">לעמוד התוכן</a></p></div>
         <div class="day hl"><span class="d">ט"ו כסלו</span><span class="g">רביעי 25.11</span><p>"תומך תמימים": מפגש היכרות מקוון למחנכי כיתות ח'</p></div>
-        <div class="day hl"><span class="d">ט"ז כסלו</span><span class="g">חמישי 26.11</span><p>מפגש מנהלי הרשת בצפון, 13:00–18:00. כל המנהלים כבר נרשמו, ואף צירפו איש צוות נוסף. יישר כוח!</p></div>
-      </div>
-      <div class="panel" style="gap:8px;margin-top:4px">
-        <h3 style="margin:0">מפגש המנהלים האזורי · פורום צפון</h3>
-        <img src="/vayetze/media/forum-tzafon.jpg" alt="הזמנה למפגש המנהלים האזורי, פורום צפון: ט&quot;ז כסלו, 13:00–18:00, במתקן מיוחד" loading="lazy" style="width:100%;border-radius:12px;display:block">
-        <p style="margin:0">מגיעים <strong>בדיוק בזמן</strong>, ועדיף כמה דקות לפני. המקום יימסר בהמשך. בואו פנויים, השאירו הכל מאחור, ופשוט תיהנו.</p>
-        <p style="margin:0"><a class="mini" data-link="פורום צפון: אפליקציה" href="https://tik-mosad-tt.vercel.app/m/knisa" target="_blank" rel="noopener" style="color:var(--brand);font-weight:700">לאפליקציית המפגש ←</a></p>
+        <div class="day hl"><span class="d">ט"ז כסלו</span><span class="g">חמישי 26.11</span><p>מפגש מנהלי הצפון. המפגש מיועד למנהלי מוסדות הצפון, וכל המוזמנים כבר קיבלו הזמנה אישית ונרשמו. יישר כוח!</p></div>
       </div>
       <div class="kit" data-kit="calendar"></div>
       <h3 id="ask-h">השער פתוח: תמיד אפשר לשאול</h3>
@@ -658,7 +652,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
             {to:"לרכז / ליד ימין",text:'לקראת כינוסי יו"ד שבט של הרשת (ד\'–ו\' בשבט (12–14.1), כפר חב"ד):\n1. לוודא שהרישום בוצע לכל השכבות, כולל מורים ומלווים, לפי מצבת מדויקת: https://bit.ly/YudShvatRishum\n2. להזמין הסעות לפי שעות הסבב. אי אפשר לצאת באמצע הכינוס.\n\nנא לעדכן אותי כשהרישום הושלם.'}]},
     calendar:{events:[],msgs:[]}
   };
-  KITS.calendar.events=[].concat([D(2026,11,22,null,null,'פתיחת שבוע החסידות הארצי "אורייתא" (עד י"ט כסלו)','',"עמוד התוכן: https://nerot.mbakodesh.org.il/program/אורייתא",'י"ב כסלו')],KITS.tomchei.events,[D(2026,11,26,13,18,'מפגש מנהלי הרשת בצפון','',"תוכנית ייחודית, והסודיות משתלמת",'ט"ז כסלו')]);
+  KITS.calendar.events=[].concat([D(2026,11,22,null,null,'פתיחת שבוע החסידות הארצי "אורייתא" (עד י"ט כסלו)','',"עמוד התוכן: https://nerot.mbakodesh.org.il/program/אורייתא",'י"ב כסלו')],KITS.tomchei.events);
   var p2=function(n){return (n<10?"0":"")+n};
   function hm(h){ var H=Math.floor(h),M=Math.round((h-H)*60); return p2(H)+p2(M)+"00"; }
   function ymd(e,add){ var dt=new Date(e.y,e.m-1,e.d+(add||0)); return dt.getFullYear()+p2(dt.getMonth()+1)+p2(dt.getDate()); }
