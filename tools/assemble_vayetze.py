@@ -85,6 +85,27 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .ground.cur{color:#fff;text-shadow:0 0 10px #ffe08a}
 .lmsg{margin:8px 0 2px;font-weight:700;color:#ffb27c;min-height:1.3em}
 @media (prefers-reduced-motion: reduce){.star{animation:none}}
+.rope{position:fixed;left:2px;top:50%;transform:translateY(-50%);z-index:60;width:40px;height:min(64vh,470px);opacity:.28;transition:opacity .45s,filter .45s;filter:saturate(.6)}
+.rope.ready,.rope.lit,.rope:hover,.rope:focus-within{opacity:1;filter:none}
+.rope svg{width:100%;height:100%;overflow:visible}
+.rope .rp{fill:none;stroke:#8a6420;stroke-width:3.2;stroke-linecap:round}
+.rope .rp2{fill:none;stroke:#e6c27a;stroke-width:1.4;stroke-dasharray:3 4;stroke-linecap:round}
+.rope .wood{fill:#c99a4a;stroke:#7a5518;stroke-width:1}
+.rope .knot{fill:#8a6420}
+.rope .rr{cursor:pointer}
+.rope g:focus{outline:none}
+.rope g:focus-visible .wood{stroke:#f07a32;stroke-width:2}
+.rope .rr.seen .wood{fill:#f0a465}
+.rope .rr.cur .wood{fill:#ffe08a;stroke:#f07a32}
+.rope .rgr{cursor:pointer;stroke:#4eabbc;stroke-width:2.2;stroke-linecap:round}
+.rope .rgr.cur{stroke:#2f8fa1}
+.rope .rsky path{fill:#d9c48a}
+.rope .rsky.cur path{fill:#ffcf4a}
+.rope .rorb circle{fill:#ffe08a}
+.rope .rorb .core{fill:#fff}
+.rpill{position:fixed;left:46px;z-index:61;background:#2a1d63;color:#fff;font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:12px;opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s;pointer-events:none;max-width:62vw;box-shadow:0 6px 16px rgba(42,29,99,.3)}
+.rpill.show{opacity:1;transform:none}
+@media (max-width:700px){.wrap{margin-left:30px!important}}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
