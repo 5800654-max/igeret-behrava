@@ -128,6 +128,13 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 @keyframes angelDown{0%{transform:translateY(60px);opacity:0}10%{opacity:.4}90%{opacity:.4}100%{transform:translateY(980px);opacity:0}}
 .leaving{transition:opacity .6s ease,filter .6s ease,transform .6s ease;opacity:0!important;filter:blur(2px);transform:translateY(-10px)}
 @media (prefers-reduced-motion: reduce){.bl-lad,.bl-angel{animation:none}.bl-angel{display:none}}
+/* Frosted panel: text sits on a calm surface, the ladder shows through as a soft shadow */
+:root{--glass:rgba(246,245,251,.86);--glass-thin:rgba(246,245,251,.55)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--glass:rgba(18,15,34,.84);--glass-thin:rgba(18,15,34,.5)}}
+:root[data-theme="dark"]{--glass:rgba(18,15,34,.84);--glass-thin:rgba(18,15,34,.5)}
+.wrap{background:var(--glass);-webkit-backdrop-filter:blur(7px) saturate(1.1);backdrop-filter:blur(7px) saturate(1.1);border-radius:26px;padding-inline:clamp(10px,3vw,22px);margin-top:10px!important;margin-bottom:24px!important;box-shadow:0 10px 40px rgba(42,29,99,.10),inset 0 0 0 1px rgba(255,255,255,.35);transition:background .6s}
+.bgl.dark ~ .wrap{background:var(--glass-thin)}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.wrap{background:var(--bg)}}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
