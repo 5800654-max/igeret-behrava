@@ -428,7 +428,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
       <div><strong>הפרס השבוע: מעצור דלת מעוצב</strong><br>כי אצל המנהל הזה, הדלת תמיד פתוחה.</div>
     </div>
     <div><label class="q" for="r-who">1. מי מזהה? על איזה מוסד מדובר?</label>
-      <input id="r-who" maxlength="80"></div>
+      <select id="r-who"><option value="">בחרו מוסד…</option></select></div>
     <div><label class="q" for="r-secret">2. מה הסוד? מה לדעתכם מאפשר לצוות קטן כל כך להיות "צוות קומנדו", ולבנות בית חם עם דלת פתוחה?</label>
       <textarea id="r-secret" maxlength="600"></textarea></div>
     <div><label class="q" for="r-bless">3. מה תאחלו? איזו ברכה תרצו להקדיש למנהל ולצוות?</label>
@@ -495,6 +495,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 (function(){
   var $=function(id){return document.getElementById(id)};
   var T=function(what,d){ if(window.__track) window.__track(what,d||""); };
+  ["אור מנחם צפת","ת\"ת טבריה","ת\"ת מגדל העמק","ת\"ת נוף הגליל","ת\"ת עפולה","צבאות מנחם חיפה והקריות","אהלי יוסף יצחק עתלית","בני מנחם חדרה","ת\"ת חריש","דברי מנחם נתניה","בית חינוך כפר סבא","בית חינוך רעננה","אור מנחם עמנואל","אהלי מנחם תל אביב","בני מנחם חולון","בני מנחם בני ברק","ת\"ת כפר חב\"ד","אור שמחה כפר חב\"ד","בית חינוך גני איילון","נער ישראל ירושלים","אהלי מנחם ביתר עילית","תפארת מנחם ביתר עילית","תפארת שמואל בית שמש","פאר מנחם אלעד","תורת מנחם תל ציון","ת\"ת רחובות","בית חינוך נס ציונה","בית חינוך אשדוד","ת\"ת קרית מלאכי","בני מנחם קרית מלאכי","אהלי מנחם קרית גת","אור מנחם אשקלון","בית ישראל נתיבות","אור מנחם אופקים","אור מנחם ערד"].forEach(function(i){ $("r-who").add(new Option(i,i)); });
   function say(id,t){ var e=$(id); if(e) e.textContent=t; }
   function wire(btn,check,ok){
     $(btn).addEventListener("click",function(){
