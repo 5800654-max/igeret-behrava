@@ -26,6 +26,22 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .wall{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
 .wl{margin:0;font-weight:700;font-size:.9rem;color:var(--teal)}
 .wb{margin:4px 0;font-size:.95rem}
+.rtime{margin:4px 0 0;background:rgba(255,255,255,.14);border-radius:999px;padding:6px 14px;font-size:.92rem;color:#fff;display:inline-block}
+.bridge{text-align:center;color:var(--brand);font-weight:700;margin:6px auto 0;max-width:34em;line-height:1.5}
+.bridge .st{display:block;font-size:.78rem;color:var(--orange);font-weight:800;margin-bottom:2px}
+.climb{position:fixed;top:0;right:0;left:0;height:4px;z-index:50}
+.climb span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff8f4f,#4eabbc)}
+.thanks{background:linear-gradient(150deg,#594e93,#2a1d63);color:#fff;border-radius:14px;padding:14px 16px;margin-bottom:10px;text-align:center}
+.thanks p{margin:4px 0}
+.tk-h{font-family:var(--display);font-weight:900;font-size:1.25rem;color:#ff8f4f}
+.ladder{position:fixed;left:10px;bottom:16px;z-index:60;width:30px;padding:6px 5px;display:flex;flex-direction:column;gap:5px;border-left:3px solid #b8aef0;border-right:3px solid #b8aef0;border-radius:4px;background:rgba(255,255,255,.75);backdrop-filter:blur(4px)}
+.ladder i{display:block;height:5px;border-radius:3px;background:#d9d5ec;transition:background .4s}
+.ladder i.on{background:linear-gradient(90deg,#ff8f4f,#f07a32)}
+.cheer{position:fixed;left:48px;bottom:22px;z-index:60;background:#2a1d63;color:#fff;font-weight:700;padding:8px 14px;border-radius:12px;font-size:.92rem;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;max-width:70vw}
+.cheer.show{opacity:1;transform:none}
+.bridge{transition:color .4s}
+.bridge.on{color:var(--orange)}
+.bridge.on .st{color:var(--teal)}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}

@@ -1,3 +1,6 @@
+<div class="climb" aria-hidden="true"><span id="climb"></span></div>
+<div class="ladder" id="ladder" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="cheer" id="cheer" role="status" aria-live="polite"></div>
 <div class="wrap" dir="rtl" lang="he">
 
   <!-- Hero -->
@@ -11,6 +14,7 @@
     <p class="greet" id="greet" hidden></p>
     <p class="band">מרווחים את הנשימה • מרחיבים את הכלים • מקבלים את השפע</p>
     <h1>מוצב ארצה, <em>וראשו</em> מגיע השמימה</h1>
+    <p class="rtime" id="rtime">⏱ כ-<b id="rmin">6</b> דקות, כולל הפנמה. רווח נקי למוסד שלך.</p>
     <nav class="toc" aria-label="תוכן האיגרת">
       <a href="#sulam">הסולם</a><a href="#mazal">מזל טוב</a><a href="#programs">שלוש תוכניות</a><a href="#yudshvat">יו"ד שבט</a><a href="#riddle">החידה</a><a href="#yad">יד ימין</a><a href="#more">ועוד</a>
     </nav>
@@ -38,6 +42,7 @@
     </div>
   </section>
 
+  <p class="bridge"><span class="st">שלב 2 בסולם</span>↓ שמחים יחד: המשפחה שלנו חוגגת</p>
   <!-- Mazal tov -->
   <section id="mazal" data-track="מזל טוב">
     <span class="tag"><b>"דיבוק חברים"</b><span><i>הרחבה</i> בקהילה</span></span>
@@ -57,6 +62,7 @@
     </div>
   </section>
 
+  <p class="bridge"><span class="st">שלב 3 בסולם</span>↓ ועכשיו, שלושה כלים חדשים שמחכים למוסד שלך</p>
   <!-- Three programs -->
   <section id="programs" data-track="3 תוכניות">
     <span class="tag"><b>"נרות להאיר"</b><span><i>הרחבה</i> בכוח ההוראה</span></span>
@@ -131,6 +137,7 @@
     </div>
   </section>
 
+  <p class="bridge"><span class="st">שלב 4 בסולם</span>↓ החוויה שכל ילד יזכור</p>
   <!-- Yud Shvat -->
   <section id="yudshvat" data-track="יו״ד שבט">
     <span class="tag"><b>"כבוד ותפארת"</b><span><i>הרחבה</i> בתפארת</span></span>
@@ -154,6 +161,7 @@
     <div class="kit" data-kit="yud"></div>
   </section>
 
+  <p class="bridge"><span class="st">שלב 5 בסולם</span>↓ נעלה קומה, ונציץ למקום נוסף: בואו נראה איך זה נראה אצל אחרים. אנחנו משפחה</p>
   <!-- News from the field -->
   <section id="news" data-track="מהשטח">
     <span class="tag"><b>"איש את רעהו יעזרו"</b><span><i>הרחבה</i> בערבות</span></span>
@@ -170,6 +178,7 @@
     <p class="muted" style="font-size:.9rem">עוד ידיעות ותמונות מהמוסדות: <a href="https://bit.ly/שופרא" target="_blank" rel="noopener" data-link="שופרא דשופרא" style="color:var(--brand);font-weight:700">"שופרא דשופרא" ←</a></p>
   </section>
 
+  <p class="bridge"><span class="st">שלב 6 בסולם</span>↓ משפחה מכירים מקרוב: מי אני?</p>
   <!-- Riddle -->
   <section class="panel riddle" id="riddle" data-track="חידה" aria-labelledby="riddle-h">
     <p class="eyebrow">חידת מוסדות הרשת · הרחבה בקהילה · "דיבוק חברים"</p>
@@ -199,6 +208,7 @@
     <p class="status" id="r-status">כדי להיכנס להגרלה צריך לענות על שלוש השאלות. אנחנו קוראים הכל בשקיקה!</p>
   </section>
 
+  <p class="bridge"><span class="st">שלב 7 בסולם</span>↓ עוד שלב אחד, ואתה בראש הסולם</p>
   <!-- Right hand -->
   <section class="panel" id="yad" data-track="יד ימין">
     <span class="tag"><b>"השער הפתוח"</b><span><i>הרחבה</i> בשותפות</span></span>
@@ -248,6 +258,10 @@
   </details>
 
   <section class="sign" data-track="סיום">
+    <div class="thanks" id="thanks">
+      <p class="tk-h">🙏 הגעת לראש הסולם. תודה!</p>
+      <p id="tk-t">הזמן שאתה מקדיש לקריאה הוא מתנה גמורה למוסד שלך. אתה משקיע בדבר הנכון.</p>
+    </div>
     <p>שבת שלום, וחג גאולה שמח,<br>שנזכה לעמוד בקרקע ולהגיע השמימה.</p>
     <span class="n">האגף לחינוך יסודי - בנים</span>
     <span class="muted">רשת אהלי יוסף יצחק ליובאוויטש בארץ הקודש</span>
@@ -399,4 +413,55 @@ document.addEventListener("DOMContentLoaded",function(){
     add($("b-to").value,t,me.n); $("b-text").value=""; $("b-status").textContent="הברכה פורסמה על הקיר. יישר כוח!";
   });
 });
+
+/* Reading time, a climb bar, and a thank-you that counts the minutes */
+(function(){
+  var t0=Date.now();
+  try{
+    // Count what a reader actually reads: open text, not forms, ready messages or the folded "more" part
+    var w=0;
+    document.querySelectorAll(".wrap section p, .wrap section h1, .wrap section h2, .wrap section h3, .wrap .stations li, .wrap .qk p").forEach(function(el){
+      if(el.closest(".kit,.fwd,#more,.poll,#yad form,.thanks,details:not([open])")) return;
+      w+=(el.innerText||"").split(/\s+/).filter(Boolean).length;
+    });
+    var m=Math.max(3,Math.round(w/200*1.25*2)/2);
+    document.getElementById("rmin").textContent=String(m);
+  }catch(e){}
+  var bar=document.getElementById("climb");
+  function onScroll(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?Math.min(100,h.scrollTop/max*100):0)+"%";
+  }
+  addEventListener("scroll",onScroll,{passive:true}); onScroll();
+  var shown=false;
+  try{ new IntersectionObserver(function(es){ es.forEach(function(en){
+    if(!en.isIntersecting||shown) return; shown=true;
+    var min=Math.round((Date.now()-t0)/60000);
+    var me=window.__who?window.__who():{};
+    var who=me&&me.n?"הרב "+me.n+", ":"";
+    document.getElementById("tk-t").textContent=who+(min>=1?"תודה על "+(min===1?"הדקה":min+" הדקות")+" שהקדשת. ":"")+"הזמן שאתה מקדיש לקריאה הוא מתנה גמורה למוסד שלך. אתה משקיע בדבר הנכון.";
+    if(window.__track) window.__track("הגיע לסוף", min+" דקות");
+  }); },{threshold:.3}).observe(document.getElementById("thanks")); }catch(e){}
+})();
+
+/* The ladder: every step you reach lights up, with a word of encouragement */
+(function(){
+  var rungs=[].slice.call(document.querySelectorAll("#ladder i")).reverse(); // bottom rung first
+  var cheer=document.getElementById("cheer"), ct=null;
+  var MSG=["","שלב 2 ✓ שמחים יחד","שלב 3 ✓ כלים חדשים למוסד שלך","שלב 4 ✓ חצי סולם, יישר כוח!","שלב 5 ✓ מציצים למשפחה","שלב 6 ✓ כמעט בראש הסולם","שלב 7 ✓ הגעת לראש הסולם! 🎉"];
+  var reached=1;
+  function light(n){
+    if(n<=reached) return; reached=n;
+    rungs.forEach(function(r,i){ r.classList.toggle("on", i<n); });
+    cheer.textContent=MSG[n-1]||""; cheer.classList.add("show");
+    clearTimeout(ct); ct=setTimeout(function(){ cheer.classList.remove("show"); },2600);
+  }
+  var bridges=[].slice.call(document.querySelectorAll(".bridge"));
+  function check(){
+    var lim=innerHeight*0.65, n=0;
+    bridges.forEach(function(br){ if(br.getBoundingClientRect().top<lim){ n++; br.classList.add("on"); } });
+    if(n) light(n+1);
+  }
+  addEventListener("scroll",check,{passive:true}); check();
+})();
 </script>
