@@ -180,7 +180,7 @@
       "להאמין בצורך של כיתות מקדמות, ולתת להן את תשומת הלב הנדרשת" <span class="muted">(הרב יהושע שמעוני)</span><br>
       "שותפות צוות לקידום ילדים ברמות שונות בכיתה רגילה" <span class="muted">(הרב פנחס מנדלזון)</span><br>
       "מנהל שחוזר אחרי תקופה, עם הרבה יותר מרץ" <span class="muted">(הרב ישעיהו אלפרוביץ)</span></p>
-      <p class="pending">[הזוכה בסט המרקרים: ?]</p>
+      <p>מבין התשובות הנכונות נערכה הגרלה, <strong>והזוכה בסט המרקרים בצבעי הרמזור ובפנקס המעוצב הוא הרב יחיאל יהודה (חיליק) קופצ'יק, בית שמש. מזל טוב!</strong></p>
     </div>
     <h2 id="riddle-h">מי אני?</h2>
     <p class="pending">[החידה החדשה תיכנס כאן, מסיכום פגישת היכרות]</p>
@@ -295,31 +295,31 @@
 /* Kits: add-to-calendar and ready messages for staff, coordinator and right hand */
 (function(){
   var T=function(w,d){ if(window.__track) window.__track(w,d||""); };
-  var D=function(y,m,d,h1,h2,title,loc,det){ return {y:y,m:m,d:d,h1:h1,h2:h2,t:title,loc:loc||"",det:det||""}; };
+  var D=function(y,m,d,h1,h2,title,loc,det,heb){ return {y:y,m:m,d:d,h1:h1,h2:h2,t:title,loc:loc||"",det:det||"",heb:heb||""}; };
   var RAKAZ="השתלמות והכשרה לתפקיד רכז החינוך החברתי-חסידי";
   var BEIT='"בית המדרש" לשלוחי החינוך (30 שעות גמול)';
   var KITS={
-    tomchei:{events:[D(2026,11,25,null,null,'"תומך תמימים": מפגש היכרות מקוון למחנכי כיתות ח\'',"מקוון","השעה וקישור המפגש יישלחו לנרשמים. להרשמה: https://igeret-behrava.vercel.app/tomchei-temimim")],
+    tomchei:{events:[D(2026,11,25,null,null,'"תומך תמימים": מפגש היכרות מקוון למחנכי כיתות ח\'',"מקוון","השעה וקישור המפגש יישלחו לנרשמים. להרשמה: https://igeret-behrava.vercel.app/tomchei-temimim",'ט"ו כסלו')],
       msgs:[]},
     beit:{events:[
-        D(2026,12,31,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חולון"),D(2027,2,18,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חולון"),D(2027,5,6,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חולון"),
-        D(2026,12,29,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חיפה"),D(2027,2,16,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חיפה"),D(2027,5,4,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חיפה")],
+        D(2026,12,31,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חולון","",'כ"א טבת'),D(2027,2,18,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חולון","",'י"א אדר א\''),D(2027,5,6,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חולון","",'כ"ט ניסן'),
+        D(2026,12,29,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חיפה","",'י"ט טבת'),D(2027,2,16,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חיפה","",'ט\' אדר א\''),D(2027,5,4,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חיפה","",'כ"ז ניסן')],
       msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\n"בית המדרש" של הרשת: שלושה ימי למידה שמקפיצים את שלוחי החינוך, מוכרים לגמול השתלמות של 30 שעות.\n\nנושאי הלמידה: נכנסים ומרגישים בבית · יש לאן לצמוח · צוות שאפשר לסמוך עליו · מבנים שצרים מהחלום · סדר שמחזיק את הצמיחה · הקפיצה הבאה.\n\nקמפוס חולון (ימי חמישי): כ"א טבת 31.12 · י"א אדר א\' 18.2 · כ"ט ניסן 6.5\nקמפוס חיפה (ימי שלישי): י"ט טבת 29.12 · ט\' אדר א\' 16.2 · כ"ז ניסן 4.5\n\nמי שמעוניין להירשם, כתבו לי.'}]},
-    rakaz:{events:[D(2026,12,22,11,19,RAKAZ,"מכללת שאנן"),D(2027,2,4,11,19,RAKAZ,"מכללת תלפיות"),D(2027,3,29,11,19,RAKAZ,'כפר חב"ד')],
+    rakaz:{events:[D(2026,12,22,11,19,RAKAZ,"מכללת שאנן","",'י"ב טבת'),D(2027,2,4,11,19,RAKAZ,"מכללת תלפיות","",'כ"ז שבט'),D(2027,3,29,11,19,RAKAZ,'כפר חב"ד',"",'כ\' אדר ב\'')],
       msgs:[{to:"לרכז החינוך החברתי-חסידי",text:'שלום לרכז היקר!\nנפתחת תוכנית ההשתלמות וההכשרה לתפקיד הרכז: תוכנית ייחודית ומקצועית, שתהפוך את הרכז ממפיק אירועים למנהיג חברתי חסידי.\n\nימי ההכשרה, 11:00–19:00:\nשלישי, י"ב טבת (22.12) – מכללת שאנן\nחמישי, כ"ז שבט (4.2) – מכללת תלפיות\nשני, כ\' אדר ב\' (29.3) – כפר חב"ד\n\nנא לשריין ביומן כבר עכשיו.'},
             {to:"ליד ימין / למזכירות",text:'לתשומת לבך:\nרכז החינוך החברתי-חסידי ישתתף בהשתלמות והכשרה לתפקיד בימים:\nשלישי 22.12 · חמישי 4.2 · שני 29.3 (11:00–19:00)\n\nנא לשריין מילוי מקום לימים אלה כבר עכשיו, ולדווח על ההיעדרות כהשתלמות בשכר.'}]},
-    yud:{events:[D(2027,1,12,null,null,'כינוסי יו"ד שבט של הרשת (כיתות ג\'–ו\')','כפר חב"ד',"ד' שבט. לפי שעת הסבב של המוסד"),D(2027,1,13,null,null,'כינוסי יו"ד שבט של הרשת (כיתות ג\'–ו\')','כפר חב"ד',"ה' שבט. לפי שעת הסבב של המוסד"),D(2027,1,14,null,null,'כינוסי יו"ד שבט של הרשת (כיתות ג\'–ו\')','כפר חב"ד',"ו' שבט. לפי שעת הסבב של המוסד"),D(2027,1,14,16,19.25,'התוועדות בוגרים, יו"ד שבט (כיתות ז\'–ח\')','כפר חב"ד')],
+    yud:{events:[],
       msgs:[{to:"לקבוצת הצוות",text:'צוות יקר!\nכינוסי יו"ד שבט של הרשת בכפר חב"ד: הפקה בשווי שני מיליון ש"ח, חוויה של פעם בחיים, וכולם יהיו שם. אנחנו רוצים שכל ילד אצלנו יזכה בה.\nכיתות ג\'–ו\': ד\'–ו\' בשבט (12–14.1), לפי שעת הסבב שלנו.\nכיתות ז\'–ח\': התוועדות בוגרים, ו\' בשבט (14.1), 16:00–19:15.\nנא לשריין ביומן.'},
-            {to:"לרכז / ליד ימין",text:'לקראת כינוסי יו"ד שבט של הרשת (ד\'–ו\' בשבט, 12–14.1, כפר חב"ד):\n1. להשלים רישום של כל השכבות, כולל מורים ומלווים, לפי מצבת מדויקת: https://bit.ly/YudShvatRishum\n2. להזמין הסעות לפי שעות הסבב. אי אפשר לצאת באמצע הכינוס.'}]},
+            {to:"לרכז / ליד ימין",text:'לקראת כינוסי יו"ד שבט של הרשת (ד\'–ו\' בשבט (12–14.1), כפר חב"ד):\n1. לוודא שהרישום בוצע לכל השכבות, כולל מורים ומלווים, לפי מצבת מדויקת: https://bit.ly/YudShvatRishum\n2. להזמין הסעות לפי שעות הסבב. אי אפשר לצאת באמצע הכינוס.\n\nנא לעדכן אותי כשהרישום הושלם.'}]},
     calendar:{events:[],msgs:[]}
   };
-  KITS.calendar.events=[].concat([D(2026,11,22,null,null,'פתיחת שבוע החסידות הארצי "אורייתא" (עד י"ט כסלו)','',"עמוד התוכן: https://nerot.mbakodesh.org.il/program/אורייתא")],KITS.tomchei.events,[D(2026,11,26,null,null,'מפגש מנהלי הרשת בצפון','',"תוכנית ייחודית, והסודיות משתלמת")]);
+  KITS.calendar.events=[].concat([D(2026,11,22,null,null,'פתיחת שבוע החסידות הארצי "אורייתא" (עד י"ט כסלו)','',"עמוד התוכן: https://nerot.mbakodesh.org.il/program/אורייתא",'י"ב כסלו')],KITS.tomchei.events,[D(2026,11,26,null,null,'מפגש מנהלי הרשת בצפון','',"תוכנית ייחודית, והסודיות משתלמת",'ט"ז כסלו')]);
   var p2=function(n){return (n<10?"0":"")+n};
   function hm(h){ var H=Math.floor(h),M=Math.round((h-H)*60); return p2(H)+p2(M)+"00"; }
   function ymd(e,add){ var dt=new Date(e.y,e.m-1,e.d+(add||0)); return dt.getFullYear()+p2(dt.getMonth()+1)+p2(dt.getDate()); }
   function gcal(e){
     var dates=e.h1==null? ymd(e)+"/"+ymd(e,1) : ymd(e)+"T"+hm(e.h1)+"/"+ymd(e)+"T"+hm(e.h2);
-    return "https://calendar.google.com/calendar/render?action=TEMPLATE&ctz=Asia/Jerusalem&text="+encodeURIComponent(e.t)+"&dates="+dates+
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&ctz=Asia/Jerusalem&text="+encodeURIComponent(ttl(e))+"&dates="+dates+
       "&location="+encodeURIComponent(e.loc)+"&details="+encodeURIComponent((e.det?e.det+"\n":"")+'מתוך איגרת "בהרחבה" של האגף לחינוך יסודי - בנים');
   }
   function ics(evs){
@@ -331,12 +331,13 @@
       L.push("BEGIN:VEVENT","UID:behrava-"+ymd(e)+"-"+i+"@igeret-behrava","DTSTAMP:20261120T000000Z");
       if(e.h1==null){ L.push("DTSTART;VALUE=DATE:"+ymd(e),"DTEND;VALUE=DATE:"+ymd(e,1)); }
       else { L.push("DTSTART;TZID=Asia/Jerusalem:"+ymd(e)+"T"+hm(e.h1),"DTEND;TZID=Asia/Jerusalem:"+ymd(e)+"T"+hm(e.h2)); }
-      L.push("SUMMARY:"+esc(e.t)); if(e.loc) L.push("LOCATION:"+esc(e.loc)); if(e.det) L.push("DESCRIPTION:"+esc(e.det));
+      L.push("SUMMARY:"+esc(ttl(e))); if(e.loc) L.push("LOCATION:"+esc(e.loc)); if(e.det) L.push("DESCRIPTION:"+esc(e.det));
       L.push("END:VEVENT");
     });
     L.push("END:VCALENDAR"); return L.join("\r\n");
   }
-  function fmt(e){ return p2(e.d)+"."+p2(e.m)+(e.loc?" · "+e.loc:""); }
+  function fmt(e){ return (e.heb? e.heb+" ("+e.d+"."+e.m+")" : e.d+"."+e.m)+(e.loc?" · "+e.loc:""); }
+  function ttl(e){ return e.t+(e.heb?" · "+e.heb:""); }
   document.querySelectorAll(".kit").forEach(function(box){
     var k=KITS[box.dataset.kit]; if(!k) return;
     var h="";
