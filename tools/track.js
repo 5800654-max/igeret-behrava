@@ -59,6 +59,8 @@
     return false;
   }
   window.__track = send;
+  window.__who = who;
+  window.__wallUrl = TRACK_URL ? TRACK_URL+"?a=wall&w="+encodeURIComponent(WEEK) : "";
   if(!TRACK_URL) return;
 
   // Opened from a shared link (WhatsApp group or broadcast): ask once who is reading

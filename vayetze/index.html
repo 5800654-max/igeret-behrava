@@ -225,6 +225,9 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .w p{margin:0;font-size:.95rem;color:var(--muted)}
 .body .cal{flex-wrap:wrap;overflow:visible}
 .body .cal .day{flex:1 1 130px}
+.wall{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+.wl{margin:0;font-weight:700;font-size:.9rem;color:var(--teal)}
+.wb{margin:4px 0;font-size:.95rem}
 .kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
 .kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .kt{font-weight:700;min-width:9em}
@@ -278,16 +281,16 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     <span class="tag"><b>"דיבוק חברים"</b><span><i>הרחבה</i> בקהילה</span></span>
     <h2>מזל טוב!</h2>
     <div class="lights">
-      <div class="light"><span class="place">צפת</span><div><h3>לרב מרדכי ידגר, לנישואי בנו</h3><p>ברכת מזל טוב חמה ולבבית למנהל היקר, מנהל "אור מנחם" צפת, ולכל המשפחה. שיהיה בניין עדי עד על יסודי התורה והמצווה, כפי שהם מוארים במאור שבתורה, תורת החסידות.</p></div></div>
-      <div class="light"><span class="place">ביתר עילית</span><div><h3>יום הולדת שמח לרב דב סגל</h3><p>ביום שלישי, י"ד בכסלו. מנהל בית החינוך לשליחות "אהלי מנחם". שנה של הצלחה, נחת ושפע ברכה, בגשמיות וברוחניות.</p></div></div>
-      <div class="light"><span class="place">אשקלון</span><div><h3>יום הולדת שמח לרב שניאור זלמן ועקנין</h3><p>ביום שישי, י"ז בכסלו. מנהל "אור מנחם" אשקלון. שנה של הצלחה, נחת ושפע ברכה, בגשמיות וברוחניות.</p></div></div>
+      <div class="light"><span class="place">צפת</span><div><h3>לרב מרדכי ידגר, לנישואי בנו</h3><p>ברכת מזל טוב חמה ולבבית למנהל היקר, מנהל "אור מנחם" צפת, ולכל המשפחה. שיהיה בניין עדי עד על יסודי התורה והמצווה, כפי שהם מוארים במאור שבתורה, תורת החסידות.</p><div class="wall" data-to="הרב מרדכי ידגר" hidden></div></div></div>
+      <div class="light"><span class="place">ביתר עילית</span><div><h3>יום הולדת שמח לרב דב סגל</h3><p>ביום שלישי, י"ד בכסלו. מנהל בית החינוך לשליחות "אהלי מנחם". שנה של הצלחה, נחת ושפע ברכה, בגשמיות וברוחניות.</p><div class="wall" data-to="הרב דב סגל" hidden></div></div></div>
+      <div class="light"><span class="place">אשקלון</span><div><h3>יום הולדת שמח לרב שניאור זלמן ועקנין</h3><p>ביום שישי, י"ז בכסלו. מנהל "אור מנחם" אשקלון. שנה של הצלחה, נחת ושפע ברכה, בגשמיות וברוחניות.</p><div class="wall" data-to="הרב שניאור זלמן ועקנין" hidden></div></div></div>
     </div>
     <div class="panel" style="gap:8px">
       <label class="q" for="b-to">רוצים לברך בעצמכם? כתבו ברכה, והיא תישלח מהווצאפ שלכם</label>
       <select id="b-to"><option value="הרב מרדכי ידגר">לרב מרדכי ידגר</option><option value="הרב דב סגל">לרב דב סגל</option><option value="הרב שניאור זלמן ועקנין">לרב שניאור זלמן ועקנין</option></select>
       <textarea id="b-text" maxlength="400" rows="2"></textarea>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="sendnow" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
-      <p class="muted" style="font-size:.9rem">הווצאפ שלכם ייפתח עם הברכה מוכנה. בוחרים את בעל השמחה מאנשי הקשר, ושולחים.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="sendnow" id="b-wall" hidden>פרסום על קיר הברכות</button><a class="sendnow" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
+      <p class="muted" style="font-size:.9rem" id="b-help">הווצאפ שלכם ייפתח עם הברכה מוכנה. בוחרים את בעל השמחה מאנשי הקשר, ושולחים.</p>
       <p class="status" id="b-status"></p>
     </div>
   </section>
@@ -594,6 +597,32 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     box.querySelectorAll("[data-wa]").forEach(function(a){ a.addEventListener("click",function(){ T("העביר הודעה", box.dataset.kit+" "+k.msgs[a.dataset.wa].to+" (וואטסאפ)"); }) });
   });
 })();
+
+/* Blessings wall: only principals who came in through their personal email link see it and post on it */
+document.addEventListener("DOMContentLoaded",function(){
+  var $=function(id){return document.getElementById(id)};
+  var me=window.__who?window.__who():{};
+  if(!me.id || !window.__wallUrl) return;
+  var walls=document.querySelectorAll(".wall");
+  walls.forEach(function(w){ w.hidden=false; w.innerHTML='<p class="wl">💬 קיר הברכות</p><div class="wi"><p class="wb muted we">עוד אין ברכות. היו הראשונים!</p></div>'; });
+  $("b-wall").hidden=false;
+  var lb=document.querySelector('label[for="b-to"]'); if(lb) lb.textContent="כתבו ברכה: היא תופיע על קיר הברכות, ואפשר גם לשלוח אותה בווצאפ";
+  $("b-help").textContent="את קיר הברכות רואים רק מנהלי האגף.";
+  function add(to,text,name){
+    walls.forEach(function(w){ if(w.dataset.to!==to) return;
+      var p=document.createElement("p"); p.className="wb"; p.textContent='"'+text+'"';
+      var s=document.createElement("span"); s.className="muted"; s.textContent=" (הרב "+String(name||"").replace(/^הרב\s+/,"")+")"; p.appendChild(s);
+      var e=w.querySelector(".we"); if(e) e.remove(); w.querySelector(".wi").appendChild(p); });
+  }
+  fetch(window.__wallUrl).then(function(r){return r.json()}).then(function(list){
+    (list||[]).forEach(function(b){ add(b.to,b.text,b.name); });
+  }).catch(function(){});
+  $("b-wall").addEventListener("click",function(){
+    var t=$("b-text").value.trim(); if(!t){ $("b-status").textContent="כתבו ברכה לפני הפרסום."; return; }
+    if(window.__track) window.__track("ברכה",$("b-to").value+": "+t);
+    add($("b-to").value,t,me.n); $("b-text").value=""; $("b-status").textContent="הברכה פורסמה על הקיר. יישר כוח!";
+  });
+});
 </script>
 <script>
 /* Silent tracking: every open, click and answer goes to the Apps Script log.
@@ -657,6 +686,8 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     return false;
   }
   window.__track = send;
+  window.__who = who;
+  window.__wallUrl = TRACK_URL ? TRACK_URL+"?a=wall&w="+encodeURIComponent(WEEK) : "";
   if(!TRACK_URL) return;
 
   // Opened from a shared link (WhatsApp group or broadcast): ask once who is reading
