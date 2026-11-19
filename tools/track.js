@@ -111,10 +111,14 @@
   // Which parts were read: one summary row when the reader leaves
   var seen=[], reported=false;
   try{
+    // A part counts as read when 45% of it is on screen, or when it fills 40% of the screen
+    // (long parts never reach 45% on a phone)
+    var th=[]; for(var t=0;t<=20;t++) th.push(t/20);
     var io=new IntersectionObserver(function(es){es.forEach(function(en){
-      var k=en.target.getAttribute("data-track");
-      if(en.isIntersecting && k && seen.indexOf(k)<0) seen.push(k);
-    })},{threshold:.45});
+      var k=en.target.getAttribute("data-track"), vh=window.innerHeight||800;
+      var enough=en.intersectionRatio>=.45 || en.intersectionRect.height>=vh*.4;
+      if(en.isIntersecting && enough && k && seen.indexOf(k)<0) seen.push(k);
+    })},{threshold:th});
     document.querySelectorAll("section[data-track]").forEach(function(s){io.observe(s)});
   }catch(e){}
   document.querySelectorAll("details[data-track]").forEach(function(d){
