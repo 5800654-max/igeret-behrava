@@ -48,10 +48,11 @@
       <div class="light"><span class="place">אשקלון</span><div><h3>יום הולדת שמח לרב שניאור זלמן ועקנין</h3><p>מנהל "אור מנחם" אשקלון. שנה של הצלחה, נחת ושפע ברכה, בגשמיות וברוחניות.</p></div></div>
     </div>
     <div class="panel" style="gap:8px">
-      <label class="q" for="b-to">רוצים להוסיף ברכה משלכם? נעביר אותה הלאה</label>
+      <label class="q" for="b-to">רוצים לברך בעצמכם? כתבו ברכה, והיא תישלח מהווצאפ שלכם</label>
       <select id="b-to"><option value="הרב מרדכי ידגר">לרב מרדכי ידגר</option><option value="הרב דב סגל">לרב דב סגל</option><option value="הרב שניאור זלמן ועקנין">לרב שניאור זלמן ועקנין</option></select>
       <textarea id="b-text" maxlength="400" rows="2"></textarea>
-      <div><button type="button" class="sendnow" id="b-send">שליחת הברכה</button></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="sendnow" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
+      <p class="muted" style="font-size:.9rem">הווצאפ שלכם ייפתח עם הברכה מוכנה. בוחרים את בעל השמחה מאנשי הקשר, ושולחים.</p>
       <p class="status" id="b-status"></p>
     </div>
   </section>
@@ -228,8 +229,14 @@
   wire("p-send",function(){ var a=$("p-dream").value.trim(), b=$("p-ladder").value.trim();
     if(!a&&!b){ say("p-status","כתבו לפחות תשובה אחת."); return null; }
     return {what:"שאלת השבוע", d:"החלום: "+a+" | הסולם מהרשת: "+b}; },["p-status","תודה! התשובה הגיעה אלינו."]);
-  wire("b-send",function(){ var t=$("b-text").value.trim(); if(!t){ say("b-status","כתבו ברכה לפני השליחה."); return null; }
-    return {what:"ברכה", d:$("b-to").value+": "+t}; },["b-status","הברכה נשלחה, ונעביר אותה. תודה!"]);
+  // Blessing: opens the reader's WhatsApp with the text ready; they pick the person. Logged too.
+  function blessText(){ var to=$("b-to").value, t=$("b-text").value.trim();
+    return "מזל טוב "+to.replace(/^הרב /,"לרב ")+"!\n"+t+"\n\n(ברכה מאיגרת \"בהרחבה\")"; }
+  function blessHref(){ $("b-wa").href="https://wa.me/?text="+encodeURIComponent(blessText()); }
+  $("b-text").addEventListener("input",blessHref); $("b-to").addEventListener("change",blessHref); blessHref();
+  $("b-wa").addEventListener("click",function(e){ var t=$("b-text").value.trim();
+    if(!t){ e.preventDefault(); say("b-status","כתבו ברכה לפני השליחה."); return; }
+    blessHref(); T("ברכה",$("b-to").value+": "+t); say("b-status","יישר כוח! הברכה בדרך."); });
   wire("r-send",function(){ var w=$("r-who").value.trim(), s=$("r-secret").value.trim(), b=$("r-bless").value.trim();
     if(!w||!s||!b){ say("r-status","כדי להיכנס להגרלה צריך לענות על שלוש השאלות."); return null; }
     return {what:"תשובה לחידה", d:"מוסד: "+w+" | הסוד: "+s+" | ברכה: "+b}; },["r-status","התשובה נקלטה ונכנסה להגרלה. הפתרון יפורסם באיגרת הבאה."]);
