@@ -215,6 +215,22 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .okline{display:flex;gap:8px;align-items:center;font-size:.95rem}
 .okline input{width:auto}
 .more{margin:0}
+.ws{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.w{border-radius:12px;padding:12px 14px;display:grid;gap:4px}
+.w.s{background:var(--teal-soft)}
+.w.c{background:var(--gold-soft)}
+.w .k{font-weight:800;font-size:.85rem;color:var(--teal)}
+.w.c .k{color:var(--orange)}
+.w b{font-family:var(--display);font-size:1.08rem}
+.w p{margin:0;font-size:.95rem;color:var(--muted)}
+.body .cal{flex-wrap:wrap;overflow:visible}
+.body .cal .day{flex:1 1 130px}
+.kit{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}
+.kitrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.kt{font-weight:700;min-width:9em}
+.glinks{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.9rem}
+.glinks a{color:var(--brand);font-weight:600}
+.kn{font-size:.85rem;margin:0}
 .pending{background:#fff2b3;color:#5a4500;border:2px dashed #b9861f;border-radius:10px;padding:8px 12px;font-weight:700}
 </style>
 <div class="wrap" dir="rtl" lang="he">
@@ -237,7 +253,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 
   <!-- Torah: the ladder -->
   <section id="sulam" data-track="פרשת השבוע">
-    <span class="tag"><b>"מוצב ארצה"</b><span><i>הרחבה</i> בחזון</span></span>
+    <span class="tag"><b>"שרי אלפים"</b><span><i>הרחבה</i> בהנהגה</span></span>
     <p class="verse">"וַיַּחֲלֹם, וְהִנֵּה סֻלָּם מֻצָּב אַרְצָה וְרֹאשׁוֹ מַגִּיעַ הַשָּׁמָיְמָה"<small>בראשית כח, יב</small></p>
     <p>מנהל עומד על סולם.</p>
     <div class="qkinds" role="list">
@@ -259,7 +275,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 
   <!-- Mazal tov -->
   <section id="mazal" data-track="מזל טוב">
-    <span class="tag"><b>"איש את רעהו יעזרו"</b><span><i>הרחבה</i> בערבות</span></span>
+    <span class="tag"><b>"דיבוק חברים"</b><span><i>הרחבה</i> בקהילה</span></span>
     <h2>מזל טוב!</h2>
     <div class="lights">
       <div class="light"><span class="place">צפת</span><div><h3>לרב מרדכי ידגר, לנישואי בנו</h3><p>ברכת מזל טוב חמה ולבבית למנהל היקר, מנהל "אור מנחם" צפת, ולכל המשפחה. שיהיה בניין עדי עד על יסודי התורה והמצווה, כפי שהם מוארים במאור שבתורה, תורת החסידות.</p></div></div>
@@ -283,12 +299,14 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     <div class="cards">
       <details class="card" open data-track="תומך תמימים">
         <summary>
+          <span class="tag"><b>"מחיל אל חיל"</b><span><i>הרחבה</i> בהתחדשות</span></span>
           <span class="row"><h3>1. "תומך תמימים": מלווים את תלמידי כיתות ח' לישיבה</h3><span class="chev" aria-hidden="true">⌄</span></span>
         </summary>
         <div class="body">
           <p>תוכנית ליווי לתלמידי כיתות ח' ולהוריהם, כדי שייקלטו בצורה מיטבית בישיבה. לא רק קליטה: גם כלים להתאקלמות ולהצלחה בישיבה.</p>
           <p><strong>השלב הראשון: ביום רביעי, ט"ו בכסלו (25.11), מפגש היכרות מקוון לכל מחנכי כיתות ח' במוסדות הרשת.</strong> השעה וקישור המפגש יישלחו לנרשמים.</p>
           <p class="act">מה לעשות: להעביר עוד היום את ההודעה למחנך כיתה ח' במוסד, ולוודא שנרשם. ההרשמה לוקחת דקה.</p>
+          <div class="kit" data-kit="tomchei"></div>
           <div class="fwd" id="fwd-tomchei">מחנך כיתה ח' יקר, שלום וברכה!
 הרשת יוצאת לדרך עם "תומך תמימים": תוכנית ליווי לתלמידי כיתות ח' ולהוריהם לקראת המעבר לישיבה. לא רק קליטה, אלא גם כלים להתאקלמות ולהצלחה בישיבה.
 
@@ -301,22 +319,38 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 
       <details class="card" data-track="בית המדרש">
         <summary>
-          <span class="row"><h3>2. "בית המדרש": שלושה ימים שמקפיצים את שלוחי החינוך</h3><span class="chev" aria-hidden="true">⌄</span></span>
+          <span class="tag"><b>"נתינת כוח"</b><span><i>הרחבה</i> בעוצמת השליח</span></span>
+          <span class="row"><h3>2. "בית המדרש": שלושה ימי למידה שמקפיצים את שלוחי החינוך · 30 שעות גמול</h3><span class="chev" aria-hidden="true">⌄</span></span>
         </summary>
         <div class="body">
-          <p>תוכנית ארצית בת שלושה ימים להקפצת שלוחי החינוך, ב<strong>שני קמפוסים</strong>:</p>
-          <div class="qkinds" role="list">
-            <div class="qk" role="listitem"><span class="n">במרכז הארץ</span><p>קמפוס שלוחי החינוך בחולון</p></div>
-            <div class="qk" role="listitem"><span class="n">בצפון הארץ</span><p>קמפוס שלוחי החינוך בחיפה</p></div>
+          <p>תוכנית ארצית בת שלושה ימי למידה להקפצת שלוחי החינוך, <strong>מוכרת לגמול השתלמות של 30 שעות</strong>.</p>
+          <p>את תוכנית הלמידה בנינו מתוך מה שראינו בביקורים במוסדות: שלוש חוזקות שעליהן בונים, ושלושה אתגרים שאליהם ממשיכים לגדול.</p>
+          <h3>על מה אנחנו בונים</h3>
+          <div class="ws">
+            <div class="w s"><span class="k">24 מוסדות</span><b>נכנסים ומרגישים בבית</b><p>אקלים חינוכי מיטבי: שכל ילד, הורה ומורה ירגישו בבית מהרגע שהם עוברים בשער.</p></div>
+            <div class="w s"><span class="k">19 מוסדות</span><b>יש לאן לצמוח, ויש עם מי</b><p>שיווק מוסדי וכיתתי, חיבור ותחושת שייכות: לספר את הסיפור שלנו כך שירצו להיות חלק ממנו.</p></div>
+            <div class="w s"><span class="k">2/3 מהמוסדות</span><b>צוות שאפשר לסמוך עליו</b><p>מודעות עצמית והתקדמות אישית: להתבונן פנימה יחד עם חברים ועמיתים, לשמוע משוב ולצמוח ממנו.</p></div>
           </div>
-          <p><strong>התוכנית מוכרת לגמול השתלמות של 30 שעות.</strong></p>
-          <p class="pending">[ממתין: תאריכים וקישור הרשמה]</p>
+          <h3>לאן ממשיכים לגדול</h3>
+          <div class="ws">
+            <div class="w c"><span class="k">17 מוסדות</span><b>מבנים שצרים מהחלום</b><p>חינוך ללא תנאים, תרתי משמע: יזמות חינוכית, לעשות דברים אחרת ולהרוויח מכל מצב.</p></div>
+            <div class="w c"><span class="k">13 מוסדות</span><b>סדר שמחזיק את הצמיחה</b><p>ניהול זמן ושגרות עבודה, ככלי וכעוגן להצלחה.</p></div>
+            <div class="w c"><span class="k">8 מוסדות</span><b>הקפיצה הבאה</b><p>סדנת אומץ למיטיבי לכת, שרוצים לצאת להרפתקה חינוכית פורצת דרך.</p></div>
+          </div>
+          <h3>ימי הלמידה</h3>
+          <div class="qkinds" role="list">
+            <div class="qk" role="listitem"><span class="n">קמפוס שלוחי החינוך, חולון · ימי חמישי</span><p>כ"א טבת (31.12) · י"א אדר א' (18.2) · כ"ט ניסן (6.5)</p></div>
+            <div class="qk" role="listitem"><span class="n">קמפוס שלוחי החינוך, חיפה · ימי שלישי</span><p>י"ט טבת (29.12) · ט' אדר א' (16.2) · כ"ז ניסן (4.5)</p></div>
+          </div>
+          <p class="pending">[לאשר: איזה קמפוס בכל שורה, והאם השורה השנייה בימי שלישי. וקישור הרשמה]</p>
           <p class="act">מה לעשות: לספר לצוות המלמדים על התוכנית, ולעודד אותם להירשם בקמפוס הקרוב.</p>
+          <div class="kit" data-kit="beit"></div>
         </div>
       </details>
 
       <details class="card" data-track="הכשרת רכזים">
         <summary>
+          <span class="tag"><b>"נר מצוה ותורה אור"</b><span><i>הרחבה</i> ברוח</span></span>
           <span class="row"><h3>3. הכשרת רכזי החינוך החברתי-חסידי: מהפקת אירועים למנהיגות</h3><span class="chev" aria-hidden="true">⌄</span></span>
         </summary>
         <div class="body">
@@ -328,6 +362,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
             <div class="day"><span class="d">כ' אדר ב'</span><span class="g">שני 29.3</span><p>כפר חב"ד</p></div>
           </div>
           <p class="act">מה לעשות כבר מעכשיו: לשריין מילוי מקום לרכז בשלושת הימים האלה, ולדווח על היעדרותו כהשתלמות בשכר.</p>
+          <div class="kit" data-kit="rakaz"></div>
         </div>
       </details>
     </div>
@@ -335,7 +370,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 
   <!-- Yud Shvat -->
   <section id="yudshvat" data-track="יו״ד שבט">
-    <span class="tag"><b>"מלאה הארץ דעה"</b><span><i>הרחבה</i> ברוח</span></span>
+    <span class="tag"><b>"כבוד ותפארת"</b><span><i>הרחבה</i> בתפארת</span></span>
     <h2>יו"ד שבט: אסור שיהיה ילד אחד שיפספס</h2>
     <p>כינוסי יו"ד שבט של תלמידי הרשת הם הפקה בשווי <strong>שני מיליון ש"ח</strong>. זה ממש עוול שיהיה ילד אחד שלא יזכה להיות שם. וזה מה שמחכה לו:</p>
     <ol class="stations" aria-label="מה מחכה לתלמידים">
@@ -350,13 +385,18 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     <p>עלות: 32 ₪ לתלמיד.</p>
     <p style="text-align:center;margin:8px 0"><a class="cta" data-link="יו״ד שבט: לאתר הרישום" href="https://bit.ly/YudShvatRishum" target="_blank" rel="noopener">לאתר הרישום ←</a></p>
     <p class="act">מה לעשות: לרשום את כל השכבות, כולל מורים ומלווים, לפי מצבת מדויקת.</p>
+    <div class="kit" data-kit="yud"></div>
   </section>
 
   <!-- News from the field -->
   <section id="news" data-track="מהשטח">
     <span class="tag"><b>"איש את רעהו יעזרו"</b><span><i>הרחבה</i> בערבות</span></span>
     <h2>מהשטח</h2>
-    <p class="pending">[ממתין לידיעות מקבוצת "שופרא דשופרא"]</p>
+    <div class="lights">
+      <div class="light"><span class="place">בני ברק</span><div><h3>נתפסו במצלמה</h3><p>תלמידי ת"ת "בני מנחם" בבני ברק נקלטו כשהם לומדים את המנון הנושא השנתי, עם פתיחת הנושא והמבצע.</p>
+        <video controls playsinline preload="metadata" poster="/vayetze/media/bnei-brak-himnon.jpg" src="/vayetze/media/bnei-brak-himnon.mp4" style="width:100%;aspect-ratio:16/9;border-radius:12px;background:#2a1d63;margin-top:8px" aria-label="תלמידי בני מנחם בני ברק לומדים את המנון הנושא השנתי"></video></div></div>
+    </div>
+    <p class="pending">[ממתין לעוד ידיעות מקבוצת "שופרא דשופרא"]</p>
   </section>
 
   <!-- Riddle -->
@@ -384,7 +424,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 
   <!-- Right hand -->
   <section class="panel" id="yad" data-track="יד ימין">
-    <span class="tag"><b>"איש את רעהו יעזרו"</b><span><i>הרחבה</i> בשותפות</span></span>
+    <span class="tag"><b>"השער הפתוח"</b><span><i>הרחבה</i> בשותפות</span></span>
     <h2>מי יד ימינך במוסד?</h2>
     <p>חשוב לנו לתת לך, המנהל, את הכל, אבל ממש בלי להפריע לך. יש דברים שאפשר להרוויח גם באמצעות האנשים שסביבך.</p>
     <p>לכן אנחנו מזמינים כל מנהל להוסיף <strong>איש קשר נוסף מטעם המוסד</strong>: סגן, או יד ימין שקרוב אליך. הוא יקבל במקביל אליך כל חומר וכל ידיעה חשובה: התנהלות מול הפיקוח, מענה לדרישות, הודעות מטה ומשימות מהרגע להרגע. כך המוסד שלך לא יפסיד אף הזדמנות.</p>
@@ -409,6 +449,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
         <div class="day hl"><span class="d">ט"ו כסלו</span><span class="g">רביעי 25.11</span><p>"תומך תמימים": מפגש היכרות מקוון למחנכי כיתות ח'</p></div>
         <div class="day hl"><span class="d">ט"ז כסלו</span><span class="g">חמישי 26.11</span><p>מפגש מנהלי הרשת בצפון. תוכנית ייחודית, והסודיות משתלמת. מי שעוד לא נרשם עם איש הצוות שמגיע איתו: דרך הקישור האישי באפליקציה</p></div>
       </div>
+      <div class="kit" data-kit="calendar"></div>
       <h3 id="ask-h">השער פתוח: תמיד אפשר לשאול</h3>
       <div class="react" id="react">
         <a href="#more" role="button" data-k="read" aria-pressed="false"><span class="e">✓</span>קראתי</a>
@@ -476,6 +517,77 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     return {what:"איש קשר נוסף", d:"מוסד: "+i+" | שם: "+n+" | תפקיד: "+$("y-role").value+" | נייד: "+p+" | מייל: "+m}; },["y-status","תודה! איש הקשר נוסף, ומעכשיו הוא יקבל במקביל אליך."]);
   wire("ask-send",function(){ var t=$("ask-text").value.trim(); if(!t){ say("ask-status","כתבו את השאלה לפני השליחה."); return null; }
     return {what:"שאלה", d:t}; },["ask-status","השאלה נשלחה, ונחזור אליך באופן אישי."]);
+})();
+
+/* Kits: add-to-calendar and ready messages for staff, coordinator and right hand */
+(function(){
+  var T=function(w,d){ if(window.__track) window.__track(w,d||""); };
+  var D=function(y,m,d,h1,h2,title,loc,det){ return {y:y,m:m,d:d,h1:h1,h2:h2,t:title,loc:loc||"",det:det||""}; };
+  var RAKAZ="השתלמות והכשרה לתפקיד רכז החינוך החברתי-חסידי";
+  var BEIT='"בית המדרש" לשלוחי החינוך (30 שעות גמול)';
+  var KITS={
+    tomchei:{events:[D(2026,11,25,null,null,'"תומך תמימים": מפגש היכרות מקוון למחנכי כיתות ח\'',"מקוון","השעה וקישור המפגש יישלחו לנרשמים. להרשמה: https://igeret-behrava.vercel.app/tomchei-temimim")],
+      msgs:[]},
+    beit:{events:[
+        D(2026,12,31,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חולון"),D(2027,2,18,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חולון"),D(2027,5,6,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חולון"),
+        D(2026,12,29,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חיפה"),D(2027,2,16,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חיפה"),D(2027,5,4,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חיפה")],
+      msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\n"בית המדרש" של הרשת: שלושה ימי למידה שמקפיצים את שלוחי החינוך, מוכרים לגמול השתלמות של 30 שעות.\n\nנושאי הלמידה: נכנסים ומרגישים בבית · יש לאן לצמוח · צוות שאפשר לסמוך עליו · מבנים שצרים מהחלום · סדר שמחזיק את הצמיחה · הקפיצה הבאה.\n\nקמפוס חולון (ימי חמישי): כ"א טבת 31.12 · י"א אדר א\' 18.2 · כ"ט ניסן 6.5\nקמפוס חיפה (ימי שלישי): י"ט טבת 29.12 · ט\' אדר א\' 16.2 · כ"ז ניסן 4.5\n\nמי שמעוניין להירשם, כתבו לי.'}]},
+    rakaz:{events:[D(2026,12,22,11,19,RAKAZ,"מכללת שאנן"),D(2027,2,4,11,19,RAKAZ,"מכללת תלפיות"),D(2027,3,29,11,19,RAKAZ,'כפר חב"ד')],
+      msgs:[{to:"לרכז החינוך החברתי-חסידי",text:'שלום לרכז היקר!\nנפתחת תוכנית ההשתלמות וההכשרה לתפקיד הרכז: תוכנית ייחודית ומקצועית, שתהפוך את הרכז ממפיק אירועים למנהיג חברתי חסידי.\n\nימי ההכשרה, 11:00–19:00:\nשלישי, י"ב טבת (22.12) – מכללת שאנן\nחמישי, כ"ז שבט (4.2) – מכללת תלפיות\nשני, כ\' אדר ב\' (29.3) – כפר חב"ד\n\nנא לשריין ביומן כבר עכשיו.'},
+            {to:"ליד ימין / למזכירות",text:'לתשומת לבך:\nרכז החינוך החברתי-חסידי ישתתף בהשתלמות והכשרה לתפקיד בימים:\nשלישי 22.12 · חמישי 4.2 · שני 29.3 (11:00–19:00)\n\nנא לשריין מילוי מקום לימים אלה כבר עכשיו, ולדווח על ההיעדרות כהשתלמות בשכר.'}]},
+    yud:{events:[D(2027,1,12,null,null,'כינוסי יו"ד שבט של הרשת (כיתות ג\'–ו\')','כפר חב"ד',"ד' שבט. לפי שעת הסבב של המוסד"),D(2027,1,13,null,null,'כינוסי יו"ד שבט של הרשת (כיתות ג\'–ו\')','כפר חב"ד',"ה' שבט. לפי שעת הסבב של המוסד"),D(2027,1,14,null,null,'כינוסי יו"ד שבט של הרשת (כיתות ג\'–ו\')','כפר חב"ד',"ו' שבט. לפי שעת הסבב של המוסד"),D(2027,1,14,16,19.25,'התוועדות בוגרים, יו"ד שבט (כיתות ז\'–ח\')','כפר חב"ד')],
+      msgs:[{to:"לקבוצת הצוות",text:'צוות יקר!\nכינוסי יו"ד שבט של הרשת בכפר חב"ד: הפקה ענקית, ואף ילד לא צריך לפספס אותה.\nכיתות ג\'–ו\': ד\'–ו\' בשבט (12–14.1), לפי שעת הסבב שלנו.\nכיתות ז\'–ח\': התוועדות בוגרים, ו\' בשבט (14.1), 16:00–19:15.\nנא לשריין ביומן.'},
+            {to:"לרכז / ליד ימין",text:'לקראת כינוסי יו"ד שבט של הרשת (ד\'–ו\' בשבט, 12–14.1, כפר חב"ד):\n1. להשלים רישום של כל השכבות, כולל מורים ומלווים, לפי מצבת מדויקת: https://bit.ly/YudShvatRishum\n2. עלות: 32 ₪ לתלמיד.\n3. להזמין הסעות לפי שעות הסבב. אי אפשר לצאת באמצע הכינוס.'}]},
+    calendar:{events:[],msgs:[]}
+  };
+  KITS.calendar.events=[].concat(KITS.tomchei.events,[D(2026,11,26,null,null,'מפגש מנהלי הרשת בצפון','',"תוכנית ייחודית, והסודיות משתלמת")]);
+  var p2=function(n){return (n<10?"0":"")+n};
+  function hm(h){ var H=Math.floor(h),M=Math.round((h-H)*60); return p2(H)+p2(M)+"00"; }
+  function ymd(e,add){ var dt=new Date(e.y,e.m-1,e.d+(add||0)); return dt.getFullYear()+p2(dt.getMonth()+1)+p2(dt.getDate()); }
+  function gcal(e){
+    var dates=e.h1==null? ymd(e)+"/"+ymd(e,1) : ymd(e)+"T"+hm(e.h1)+"/"+ymd(e)+"T"+hm(e.h2);
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE&ctz=Asia/Jerusalem&text="+encodeURIComponent(e.t)+"&dates="+dates+
+      "&location="+encodeURIComponent(e.loc)+"&details="+encodeURIComponent((e.det?e.det+"\n":"")+'מתוך איגרת "בהרחבה" של האגף לחינוך יסודי - בנים');
+  }
+  function ics(evs){
+    var esc=function(t){return String(t).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\;")};
+    var L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//behrava//he","CALSCALE:GREGORIAN",
+      "BEGIN:VTIMEZONE","TZID:Asia/Jerusalem","BEGIN:STANDARD","DTSTART:19701025T020000","RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU","TZOFFSETFROM:+0300","TZOFFSETTO:+0200","TZNAME:IST","END:STANDARD",
+      "BEGIN:DAYLIGHT","DTSTART:19700327T020000","RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=FR;BYMONTHDAY=23,24,25,26,27,28,29","TZOFFSETFROM:+0200","TZOFFSETTO:+0300","TZNAME:IDT","END:DAYLIGHT","END:VTIMEZONE"];
+    evs.forEach(function(e,i){
+      L.push("BEGIN:VEVENT","UID:behrava-"+ymd(e)+"-"+i+"@igeret-behrava","DTSTAMP:20261120T000000Z");
+      if(e.h1==null){ L.push("DTSTART;VALUE=DATE:"+ymd(e),"DTEND;VALUE=DATE:"+ymd(e,1)); }
+      else { L.push("DTSTART;TZID=Asia/Jerusalem:"+ymd(e)+"T"+hm(e.h1),"DTEND;TZID=Asia/Jerusalem:"+ymd(e)+"T"+hm(e.h2)); }
+      L.push("SUMMARY:"+esc(e.t)); if(e.loc) L.push("LOCATION:"+esc(e.loc)); if(e.det) L.push("DESCRIPTION:"+esc(e.det));
+      L.push("END:VEVENT");
+    });
+    L.push("END:VCALENDAR"); return L.join("\r\n");
+  }
+  function fmt(e){ return p2(e.d)+"."+p2(e.m)+(e.loc?" · "+e.loc:""); }
+  document.querySelectorAll(".kit").forEach(function(box){
+    var k=KITS[box.dataset.kit]; if(!k) return;
+    var h="";
+    if(k.events.length){
+      h+='<div class="kitrow"><span class="kt">📅 ליומן</span><button type="button" class="ghost mini" data-ics>'+(k.events.length>1?"כל המועדים":"להוסיף")+' (אייפון / אאוטלוק)</button></div>';
+      h+='<div class="glinks">'+k.events.map(function(e,i){return '<a href="'+gcal(e)+'" target="_blank" rel="noopener" data-g="'+i+'">'+fmt(e)+' ביומן גוגל</a>'}).join("")+'</div>';
+      h+='<p class="muted kn">ביומן גוגל אפשר להוסיף מוזמנים: מורים, הרכז, יד ימין. את קובץ היומן אפשר גם להעביר להם.</p>';
+    }
+    k.msgs.forEach(function(m,i){
+      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="ghost mini" data-cp="'+i+'">להעתיק</button><a class="mini" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
+    });
+    box.innerHTML=h;
+    var ib=box.querySelector("[data-ics]");
+    if(ib) ib.addEventListener("click",function(){
+      var blob=new Blob([ics(k.events)],{type:"text/calendar;charset=utf-8"}), a=document.createElement("a");
+      a.href=URL.createObjectURL(blob); a.download="behrava-"+box.dataset.kit+".ics"; document.body.appendChild(a); a.click(); a.remove();
+      T("הוסיף ליומן", box.dataset.kit+" (קובץ)"); ib.textContent="ירד ✓";
+    });
+    box.querySelectorAll("[data-g]").forEach(function(a){ a.addEventListener("click",function(){ T("הוסיף ליומן", box.dataset.kit+" (גוגל) "+a.textContent); }) });
+    box.querySelectorAll("[data-cp]").forEach(function(b){ b.addEventListener("click",function(){ var m=k.msgs[b.dataset.cp];
+      (navigator.clipboard?navigator.clipboard.writeText(m.text):Promise.reject()).then(function(){b.textContent="הועתק ✓"},function(){b.textContent="לא הועתק"});
+      T("העביר הודעה", box.dataset.kit+" "+m.to); }) });
+    box.querySelectorAll("[data-wa]").forEach(function(a){ a.addEventListener("click",function(){ T("העביר הודעה", box.dataset.kit+" "+k.msgs[a.dataset.wa].to+" (וואטסאפ)"); }) });
+  });
 })();
 </script>
 <script>
