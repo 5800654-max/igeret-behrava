@@ -713,6 +713,7 @@ document.addEventListener("DOMContentLoaded",function(){
     var who=me&&me.n?"הרב "+me.n+", ":"";
     document.getElementById("tk-t").textContent=who+(min>=1?"תודה על "+(min===1?"הדקה":min+" הדקות")+" שהקדשת. ":"")+"הזמן שאתה מקדיש לקריאה הוא מתנה גמורה למוסד שלך. אתה משקיע בדבר הנכון.";
     if(window.__track) window.__track("הגיע לסוף", min+" דקות");
+    var ch=document.getElementById("cheer"); if(ch){ ch.textContent="הגעת לראש הסולם! 🎉"; ch.classList.add("show"); setTimeout(function(){ ch.classList.remove("show"); },3000); }
   }); },{threshold:.3}).observe(document.getElementById("thanks")); }catch(e){}
 })();
 
@@ -720,7 +721,7 @@ document.addEventListener("DOMContentLoaded",function(){
 (function(){
   var rungs=[].slice.call(document.querySelectorAll("#ladder i")).reverse(); // bottom rung first
   var cheer=document.getElementById("cheer"), ct=null;
-  var MSG=["","שלב 2 ✓ שמחים יחד","שלב 3 ✓ כלים חדשים למוסד שלך","שלב 4 ✓ חצי סולם, יישר כוח!","שלב 5 ✓ מציצים למשפחה","שלב 6 ✓ כמעט בראש הסולם","שלב 7 ✓ הגעת לראש הסולם! 🎉"];
+  var MSG=["","שלב 2 ✓ שמחים יחד","שלב 3 ✓ כלים חדשים למוסד שלך","שלב 4 ✓ חצי סולם, יישר כוח!","שלב 5 ✓ מציצים למשפחה","שלב 6 ✓ כמעט בראש הסולם","שלב 7 ✓ השלב האחרון בסולם"];
   var reached=1;
   function light(n){
     if(n<=reached) return; reached=n;
