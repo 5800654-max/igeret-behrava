@@ -787,6 +787,15 @@ const offline=()=>{};
   function greetName(w){
     var g=document.getElementById("greet"); if(!g) return;
     g.textContent="לכבוד שליח הרבי בחינוך, הרב "+w.n+(w.i?" | "+w.i:""); g.hidden=false;
+    // "Not you?": forget this name on this device and ask again (for shared or test devices)
+    var x=document.createElement("a"); x.href="#"; x.textContent="לא אתה?"; x.className="notme";
+    x.setAttribute("style","display:block;font-size:.78rem;color:#d9d1f2;margin-top:4px;text-decoration:underline");
+    x.addEventListener("click",function(e){ e.preventDefault();
+      try{ localStorage.removeItem("igeret-me"); }catch(_){}
+      window.__igMe=null; send("לא אני",w.n);
+      location.replace(location.pathname+location.search.replace(/([?&])from=[^&]*&?/,"$1").replace(/[?&]$/,""));
+    });
+    g.appendChild(x);
   }
   var me=who();
   if(me.n){ greetName(me); send("פתח את האיגרת",openDetails(me,"")); markAddress(me); }
