@@ -109,6 +109,7 @@
       try{ localStorage.setItem("igeret-me", JSON.stringify(w)); }catch(e){}
       box.remove(); document.documentElement.style.overflow=oldOverflow; greetName(w);
       send("פתח את האיגרת",openDetails(w,"הזדהה בכניסה")); markAddress(w);
+      try{ dispatchEvent(new CustomEvent("igme")); }catch(e){}
     }
     // Left without filling in a name: one row, so these visits are still counted
     var left=false;

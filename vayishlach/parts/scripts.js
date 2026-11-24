@@ -134,10 +134,11 @@
 })();
 
 /* Blessings wall: only principals who came in through their personal email link see it and post on it */
-document.addEventListener("DOMContentLoaded",function(){
+(function(){ var started=false;
+function initWall(){
   var $=function(id){return document.getElementById(id)};
   var me=window.__who?window.__who():{};
-  if(!me.id || !window.__wallUrl) return;
+  if(started || !(me.id||me.n) || !window.__wallUrl) return; started=true;
   var walls=document.querySelectorAll(".wall");
   walls.forEach(function(w){ w.hidden=false; w.innerHTML='<p class="wl">💬 קיר הברכות</p><div class="wi"><p class="wb muted we">עוד אין ברכות. היו הראשונים!</p></div>'; });
   $("b-wall").hidden=false;
@@ -157,7 +158,9 @@ document.addEventListener("DOMContentLoaded",function(){
     if(window.__track) window.__track("ברכה",$("b-to").value+": "+t);
     add($("b-to").value,t,me.n); $("b-text").value=""; $("b-status").textContent="הברכה פורסמה על הקיר. יישר כוח!";
   });
-});
+}
+document.addEventListener("DOMContentLoaded",initWall); addEventListener("igme",initWall);
+})();
 
 /* Reading time, a climb bar, and a thank-you that counts the minutes */
 (function(){
