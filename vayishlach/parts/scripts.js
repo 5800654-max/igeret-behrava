@@ -116,7 +116,7 @@
     });
     if(groups.length) h+='<p class="muted kn">'+(k.groups?'בגוגל מוסיפים כל מועד בנפרד, את שלושתם. ':'')+'ביומן גוגל אפשר להוסיף מוזמנים: מורים, הרכז, יד ימין. את קובץ היומן אפשר גם להעביר להם.</p>';
     k.msgs.forEach(function(m,i){
-      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="ghost mini" data-cp="'+i+'">להעתיק</button><a class="mini" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
+      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="cpbtn" data-cp="'+i+'">להעתיק</button><a class="wabtn" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
     });
     box.innerHTML=h;
     box.querySelectorAll("[data-ics]").forEach(function(ib){ ib.addEventListener("click",function(){

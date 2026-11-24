@@ -345,6 +345,14 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 @keyframes gpop{0%{opacity:.35;transform:scale(.8)}60%{opacity:1;transform:scale(1.25) translateY(-4px)}100%{opacity:1;transform:scale(1)}}
 .bridge .st::before{content:"🎁 "}
 @media (prefers-reduced-motion: reduce){.bgl svg,.gifts-row.go .gmini{animation:none}.gmini{opacity:1}}
+.wabtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;font-size:1rem;line-height:1.2;border:none;border-radius:14px;padding:11px 20px;background:linear-gradient(180deg,#2fdc72,#1fb95a);color:#fff!important;text-decoration:none;box-shadow:0 6px 16px rgba(31,185,90,.32);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.wabtn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,185,90,.4)}
+.wabtn::before{content:"";width:20px;height:20px;flex:none;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.9-1.3A9.5 9.5 0 1 0 12 2.5z'/%3E%3Cpath d='M8.6 8.2c.3-.6.6-.7 1-.7h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .4-.1.7-.7 1-.9.5-2.4.3-4.3-1.1-1.8-1.3-3-3-3.3-4.2-.2-.8-.1-1.4 0-1.7z' fill='white' stroke='none'/%3E%3C/svg%3E")}
+.cpbtn{width:auto!important;display:inline-flex;align-items:center;gap:6px;font:inherit;font-weight:700;font-size:.95rem;border:1.5px solid var(--brand);border-radius:14px;padding:9px 16px;background:transparent;color:var(--brand);cursor:pointer}
+.cpbtn::before{content:"⧉";font-size:1rem}
+.panel.riddle .cpbtn{color:#fff;border-color:rgba(255,255,255,.6)}
+.kitrow{gap:10px}
+.kitrow .kt{flex:1 1 100%}
 .pending{background:#fff2b3;color:#5a4500;border:2px dashed #b9861f;border-radius:10px;padding:8px 12px;font-weight:700}
 </style>
 <div class="climb" aria-hidden="true"><span id="climb"></span></div>
@@ -413,7 +421,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
       <label class="q" for="b-to">רוצים לברך בעצמכם? כתבו ברכה, והיא תישלח מהווצאפ שלכם</label>
       <select id="b-to"><option value="הרב טוביה חבקין">לרב טוביה חבקין</option></select>
       <textarea id="b-text" maxlength="400" rows="2"></textarea>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="sendnow" id="b-wall" hidden>פרסום על קיר הברכות</button><a class="sendnow" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="sendnow" id="b-wall" hidden>פרסום על קיר הברכות</button><a class="wabtn" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
       <p class="muted" style="font-size:.9rem" id="b-help">הווצאפ שלכם ייפתח עם הברכה מוכנה. בוחרים את בעל השמחה מאנשי הקשר, ושולחים.</p>
       <p class="status" id="b-status"></p>
     </div>
@@ -443,7 +451,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
           <select id="rk-inst"><option value="">בחרו מוסד…</option></select>
           <label class="q" for="rk-text">ההודעה (אפשר לשנות ולהוסיף מילה משלך)</label>
           <textarea id="rk-text" rows="6" maxlength="800"></textarea>
-          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="mini" id="rk-wa" href="https://wa.me/" target="_blank" rel="noopener">לשלוח לרכז בוואטסאפ</a><button type="button" class="ghost mini" id="rk-copy">להעתיק</button></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="wabtn" id="rk-wa" href="https://wa.me/" target="_blank" rel="noopener">לשלוח לרכז בוואטסאפ</a><button type="button" class="cpbtn" id="rk-copy">להעתיק</button></div>
           <div class="panel" id="rk-self" hidden style="gap:6px;background:var(--gold-soft);border:none">
             <p style="margin:0"><strong>אצלכם המנהל הוא גם הרכז. יישר כוח כפול!</strong> את שבוע החסידות הובלת בעצמך, וזה ניכר.</p>
             <p style="margin:0">ואולי זו גם הזדמנות לחשיבה מחודשת, יחד עם הרשת: למנות למוסד רכז חברתי-חסידי, כדי שתוכל להתפנות לקומה הבאה בהנהגה. עדר עדר לבדו: גם המנהל צריך רווח.</p>
@@ -708,7 +716,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     });
     if(groups.length) h+='<p class="muted kn">'+(k.groups?'בגוגל מוסיפים כל מועד בנפרד, את שלושתם. ':'')+'ביומן גוגל אפשר להוסיף מוזמנים: מורים, הרכז, יד ימין. את קובץ היומן אפשר גם להעביר להם.</p>';
     k.msgs.forEach(function(m,i){
-      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="ghost mini" data-cp="'+i+'">להעתיק</button><a class="mini" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
+      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="cpbtn" data-cp="'+i+'">להעתיק</button><a class="wabtn" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
     });
     box.innerHTML=h;
     box.querySelectorAll("[data-ics]").forEach(function(ib){ ib.addEventListener("click",function(){

@@ -64,7 +64,7 @@
       <label class="q" for="b-to">רוצים לברך בעצמכם? כתבו ברכה, והיא תישלח מהווצאפ שלכם</label>
       <select id="b-to"><option value="הרב טוביה חבקין">לרב טוביה חבקין</option></select>
       <textarea id="b-text" maxlength="400" rows="2"></textarea>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="sendnow" id="b-wall" hidden>פרסום על קיר הברכות</button><a class="sendnow" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="sendnow" id="b-wall" hidden>פרסום על קיר הברכות</button><a class="wabtn" id="b-wa" href="https://wa.me/" target="_blank" rel="noopener">שליחה בווצאפ לבעל השמחה</a></div>
       <p class="muted" style="font-size:.9rem" id="b-help">הווצאפ שלכם ייפתח עם הברכה מוכנה. בוחרים את בעל השמחה מאנשי הקשר, ושולחים.</p>
       <p class="status" id="b-status"></p>
     </div>
@@ -94,7 +94,7 @@
           <select id="rk-inst"><option value="">בחרו מוסד…</option></select>
           <label class="q" for="rk-text">ההודעה (אפשר לשנות ולהוסיף מילה משלך)</label>
           <textarea id="rk-text" rows="6" maxlength="800"></textarea>
-          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="mini" id="rk-wa" href="https://wa.me/" target="_blank" rel="noopener">לשלוח לרכז בוואטסאפ</a><button type="button" class="ghost mini" id="rk-copy">להעתיק</button></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="wabtn" id="rk-wa" href="https://wa.me/" target="_blank" rel="noopener">לשלוח לרכז בוואטסאפ</a><button type="button" class="cpbtn" id="rk-copy">להעתיק</button></div>
           <div class="panel" id="rk-self" hidden style="gap:6px;background:var(--gold-soft);border:none">
             <p style="margin:0"><strong>אצלכם המנהל הוא גם הרכז. יישר כוח כפול!</strong> את שבוע החסידות הובלת בעצמך, וזה ניכר.</p>
             <p style="margin:0">ואולי זו גם הזדמנות לחשיבה מחודשת, יחד עם הרשת: למנות למוסד רכז חברתי-חסידי, כדי שתוכל להתפנות לקומה הבאה בהנהגה. עדר עדר לבדו: גם המנהל צריך רווח.</p>
@@ -359,7 +359,7 @@
     });
     if(groups.length) h+='<p class="muted kn">'+(k.groups?'בגוגל מוסיפים כל מועד בנפרד, את שלושתם. ':'')+'ביומן גוגל אפשר להוסיף מוזמנים: מורים, הרכז, יד ימין. את קובץ היומן אפשר גם להעביר להם.</p>';
     k.msgs.forEach(function(m,i){
-      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="ghost mini" data-cp="'+i+'">להעתיק</button><a class="mini" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
+      h+='<div class="kitrow"><span class="kt">✉️ '+m.to+'</span><button type="button" class="cpbtn" data-cp="'+i+'">להעתיק</button><a class="wabtn" href="https://wa.me/?text='+encodeURIComponent(m.text)+'" target="_blank" rel="noopener" data-wa="'+i+'">בוואטסאפ</a></div>';
     });
     box.innerHTML=h;
     box.querySelectorAll("[data-ics]").forEach(function(ib){ ib.addEventListener("click",function(){

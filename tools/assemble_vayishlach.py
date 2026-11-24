@@ -166,6 +166,14 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 @keyframes gpop{0%{opacity:.35;transform:scale(.8)}60%{opacity:1;transform:scale(1.25) translateY(-4px)}100%{opacity:1;transform:scale(1)}}
 .bridge .st::before{content:"🎁 "}
 @media (prefers-reduced-motion: reduce){.bgl svg,.gifts-row.go .gmini{animation:none}.gmini{opacity:1}}
+.wabtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;font-size:1rem;line-height:1.2;border:none;border-radius:14px;padding:11px 20px;background:linear-gradient(180deg,#2fdc72,#1fb95a);color:#fff!important;text-decoration:none;box-shadow:0 6px 16px rgba(31,185,90,.32);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.wabtn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(31,185,90,.4)}
+.wabtn::before{content:"";width:20px;height:20px;flex:none;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.9-1.3A9.5 9.5 0 1 0 12 2.5z'/%3E%3Cpath d='M8.6 8.2c.3-.6.6-.7 1-.7h.5c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.6l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .4-.1.7-.7 1-.9.5-2.4.3-4.3-1.1-1.8-1.3-3-3-3.3-4.2-.2-.8-.1-1.4 0-1.7z' fill='white' stroke='none'/%3E%3C/svg%3E")}
+.cpbtn{width:auto!important;display:inline-flex;align-items:center;gap:6px;font:inherit;font-weight:700;font-size:.95rem;border:1.5px solid var(--brand);border-radius:14px;padding:9px 16px;background:transparent;color:var(--brand);cursor:pointer}
+.cpbtn::before{content:"⧉";font-size:1rem}
+.panel.riddle .cpbtn{color:#fff;border-color:rgba(255,255,255,.6)}
+.kitrow{gap:10px}
+.kitrow .kt{flex:1 1 100%}
 .pending{background:#fff2b3;color:#5a4500;border:2px dashed #b9861f;border-radius:10px;padding:8px 12px;font-weight:700}
 """
 body = body.replace("__LOGO__", logo)
