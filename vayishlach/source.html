@@ -607,9 +607,14 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
   Object.keys(RAKAZIM).forEach(function(k){ if(![].some.call($("rk-inst").options,function(o){return o.value===k})) $("rk-inst").add(new Option(k,k)); });
   function rkText(){ var n=RAKAZIM[$("rk-inst").value]||[];
     if(n==="@self") n=["שותף היקר בשבוע החסידות"];
-    var many=n.length>1, names=n.join(" ו");
-    return (many?"לרכזים היקרים, "+names+", שלום וברכה!":(n.length?(n[0].indexOf("שותף")===0?"ל"+names+", שלום וברכה!":"לרכז היקר, "+names+", שלום וברכה!"):"לרכז היקר, שלום וברכה!"))+
-      "\nרציתי לומר "+(many?"לכם":"לך")+" תודה אישית על כל מה ש"+(many?"השקעתם":"השקעת")+" מאחורי הקלעים בשבוע החסידות \"אורייתא\": ההכנה, ההפקה וההפעלה. ראיתי, והערכתי.\nיישר כוח גדול, ולשנה טובה בלימוד החסידות ובדרכי החסידות!"; }
+    var many=n.length>1;
+    var rav=function(full){ var w=full.split(" "); return w.length>1? "ר' "+w.slice(0,-1).join(" ")+" שיחי' "+w[w.length-1] : "ר' "+full+" שיחי'"; };
+    var head;
+    if(n.length&&n[0].indexOf("שותף")===0) head="ל"+n[0]+",";
+    else if(many) head="לשלוחי הרבי בחינוך\nמחנכים בלגיונו של מלך\nהרכזים החברתיים-חסידיים\n"+n.map(rav).join(" ו");
+    else head="לשליח הרבי בחינוך\nמחנך בלגיונו של מלך\nהרכז החברתי-חסידי"+(n.length?"\n"+rav(n[0]):"");
+    return head+"\nשלום וברכה!\n\n"+
+      "רציתי לומר "+(many?"לכם":"לך")+" תודה אישית על כל מה ש"+(many?"השקעתם":"השקעת")+" מאחורי הקלעים בשבוע החסידות \"אורייתא\": ההכנה, ההפקה וההפעלה. ראיתי, והערכתי.\nיישר כוח גדול, ולשנה טובה בלימוד החסידות ובדרכי החסידות!"; }
   var rkTouched=false;
   $("rk-text").value=rkText();
   $("rk-text").addEventListener("input",function(){ rkTouched=true; rkHref(); });
