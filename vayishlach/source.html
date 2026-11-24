@@ -444,7 +444,12 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
           <label class="q" for="rk-text">ההודעה (אפשר לשנות ולהוסיף מילה משלך)</label>
           <textarea id="rk-text" rows="6" maxlength="800"></textarea>
           <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="mini" id="rk-wa" href="https://wa.me/" target="_blank" rel="noopener">לשלוח לרכז בוואטסאפ</a><button type="button" class="ghost mini" id="rk-copy">להעתיק</button></div>
-          <p class="status" id="rk-note"></p>
+          <div class="panel" id="rk-self" hidden style="gap:6px;background:var(--gold-soft);border:none">
+            <p style="margin:0"><strong>אצלכם המנהל הוא גם הרכז. יישר כוח כפול!</strong> את שבוע החסידות הובלת בעצמך, וזה ניכר.</p>
+            <p style="margin:0">ואולי זו גם הזדמנות לחשיבה מחודשת, יחד עם הרשת: למנות למוסד רכז חברתי-חסידי, כדי שתוכל להתפנות לקומה הבאה בהנהגה. עדר עדר לבדו: גם המנהל צריך רווח.</p>
+            <div><button type="button" class="sendnow" id="rk-think">אשמח לחשוב על זה יחד</button></div>
+            <p class="muted kn">ובינתיים, אפשר לשלוח את התודה למי שעזר לך בשבוע החסידות:</p>
+          </div>
           <p class="muted kn">הווצאפ שלכם ייפתח עם ההודעה מוכנה. בוחרים את הרכז מאנשי הקשר, ושולחים.</p>
         </details></div></div>
     </div>
@@ -609,7 +614,10 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
   $("rk-text").value=rkText();
   $("rk-text").addEventListener("input",function(){ rkTouched=true; rkHref(); });
   $("rk-inst").addEventListener("change",function(){ if(!rkTouched) $("rk-text").value=rkText(); rkHref();
-    $("rk-note").textContent=RAKAZIM[$("rk-inst").value]==="@self"?"אצלכם המנהל הוא גם הרכז: יישר כוח כפול! אפשר לשלוח את התודה למי שעזר לך בשבוע החסידות.":""; });
+    $("rk-self").hidden=RAKAZIM[$("rk-inst").value]!=="@self"; });
+  $("rk-think").addEventListener("click",function(){
+    T("שאלה","אשמח לחשוב יחד עם הרשת על מינוי רכז חברתי-חסידי למוסד ("+$("rk-inst").value+")");
+    this.textContent="נשלח ✓ ניצור קשר בקרוב"; this.disabled=true; });
   function rkHref(){ $("rk-wa").href="https://wa.me/?text="+encodeURIComponent($("rk-text").value); }
   rkHref();
   $("rk-wa").addEventListener("click",function(){ rkHref(); T("העביר הודעה","תודה לרכז "+($("rk-inst").value||"")+" (וואטסאפ)"); });

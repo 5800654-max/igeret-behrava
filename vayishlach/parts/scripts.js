@@ -22,7 +22,10 @@
   $("rk-text").value=rkText();
   $("rk-text").addEventListener("input",function(){ rkTouched=true; rkHref(); });
   $("rk-inst").addEventListener("change",function(){ if(!rkTouched) $("rk-text").value=rkText(); rkHref();
-    $("rk-note").textContent=RAKAZIM[$("rk-inst").value]==="@self"?"אצלכם המנהל הוא גם הרכז: יישר כוח כפול! אפשר לשלוח את התודה למי שעזר לך בשבוע החסידות.":""; });
+    $("rk-self").hidden=RAKAZIM[$("rk-inst").value]!=="@self"; });
+  $("rk-think").addEventListener("click",function(){
+    T("שאלה","אשמח לחשוב יחד עם הרשת על מינוי רכז חברתי-חסידי למוסד ("+$("rk-inst").value+")");
+    this.textContent="נשלח ✓ ניצור קשר בקרוב"; this.disabled=true; });
   function rkHref(){ $("rk-wa").href="https://wa.me/?text="+encodeURIComponent($("rk-text").value); }
   rkHref();
   $("rk-wa").addEventListener("click",function(){ rkHref(); T("העביר הודעה","תודה לרכז "+($("rk-inst").value||"")+" (וואטסאפ)"); });
