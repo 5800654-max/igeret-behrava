@@ -455,7 +455,16 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     <div class="lights">
       <div class="light"><span class="place">לבית</span><div><h3>ערכה להתוועדות חסידית משפחתית</h3><p>לצד יום השיא ופעילויות הסיום של שבוע החסידות, כל תלמיד מקבל ערכה להתוועדות חסידית משפחתית לי"ט כסלו, ראש השנה לחסידות. ההתוועדות עוברת מהכיתה אל שולחן השבת והחג של המשפחה.</p>
         <img src="/vayishlach/media/erkat-yudtes.jpg" alt="ערכה להתוועדות חסידית משפחתית לי&quot;ט כסלו" loading="lazy" style="width:100%;border-radius:12px;display:block;margin-top:8px"></div></div>
-      <div class="light"><span class="place">לרכז</span><div><h3>מתנה אחת, עדר עדר לבדו</h3><p>מאחורי הקלעים של שבוע החסידות עומד רכז "נרות להאיר" של המוסד, שהשקיע, הפיק והפעיל. יישר כוח גדול לכל רכזי הרשת! והצעה קטנה: תעודה או מילה אישית לרכז שלכם, בכנס בת"ת או באסיפת הצוות הקרובה. זו בדיוק מתנה שצריכה רווח: רגע אחד שכולו שלו.</p></div></div>
+      <div class="light"><span class="place">לרכז</span><div><h3>מתנה אחת, עדר עדר לבדו</h3><p>מאחורי הקלעים של שבוע החסידות עומד רכז "נרות להאיר" של המוסד, שהשקיע, הפיק והפעיל. יישר כוח גדול לכל רכזי הרשת! והצעה קטנה: תעודה או מילה אישית לרכז שלכם, בכנס בת"ת או באסיפת הצוות הקרובה. זו בדיוק מתנה שצריכה רווח: רגע אחד שכולו שלו.</p>
+        <details class="mini-fold" data-track="לרכז: תודה אישית">
+          <summary>לשלוח לרכז תודה אישית, עכשיו ⌄</summary>
+          <label class="q" for="rk-inst">המוסד שלך</label>
+          <select id="rk-inst"><option value="">בחרו מוסד…</option></select>
+          <label class="q" for="rk-text">ההודעה (אפשר לשנות ולהוסיף מילה משלך)</label>
+          <textarea id="rk-text" rows="6" maxlength="800"></textarea>
+          <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="mini" id="rk-wa" href="https://wa.me/" target="_blank" rel="noopener">לשלוח לרכז בוואטסאפ</a><button type="button" class="ghost mini" id="rk-copy">להעתיק</button></div>
+          <p class="muted kn">הווצאפ שלכם ייפתח עם ההודעה מוכנה. בוחרים את הרכז מאנשי הקשר, ושולחים.</p>
+        </details></div></div>
     </div>
     <div class="panel" style="gap:6px">
       <p class="eyebrow">ומיד אחריו: חנוכה · "מגבירים את האור!"</p>
@@ -595,7 +604,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 (function(){
   var $=function(id){return document.getElementById(id)};
   var T=function(what,d){ if(window.__track) window.__track(what,d||""); };
-  ["אור מנחם צפת","ת\"ת טבריה","ת\"ת מגדל העמק","ת\"ת נוף הגליל","ת\"ת עפולה","צבאות מנחם חיפה והקריות","אהלי יוסף יצחק עתלית","בני מנחם חדרה","ת\"ת חריש","דברי מנחם נתניה","בית חינוך כפר סבא","בית חינוך רעננה","אור מנחם עמנואל","אהלי מנחם תל אביב","בני מנחם חולון","בני מנחם בני ברק","ת\"ת כפר חב\"ד","אור שמחה כפר חב\"ד","בית חינוך גני איילון","ת\"ת חב\"ד ליובאוויטש לוד","נער ישראל ירושלים","אהלי מנחם ביתר עילית","תפארת מנחם ביתר עילית","תפארת שמואל בית שמש","פאר מנחם אלעד","תורת מנחם תל ציון","ת\"ת רחובות","בית חינוך נס ציונה","בית חינוך אשדוד","ת\"ת קרית מלאכי","בני מנחם קרית מלאכי","אהלי מנחם קרית גת","אור מנחם אשקלון","בית ישראל נתיבות","אור מנחם אופקים","אור מנחם ערד"].forEach(function(i){ $("r-who").add(new Option(i,i)); $("y-inst").add(new Option(i,i)); });
+  ["אור מנחם צפת","ת\"ת טבריה","ת\"ת מגדל העמק","ת\"ת נוף הגליל","ת\"ת עפולה","צבאות מנחם חיפה והקריות","אהלי יוסף יצחק עתלית","בני מנחם חדרה","ת\"ת חריש","דברי מנחם נתניה","בית חינוך כפר סבא","בית חינוך רעננה","אור מנחם עמנואל","אהלי מנחם תל אביב","בני מנחם חולון","בני מנחם בני ברק","ת\"ת כפר חב\"ד","אור שמחה כפר חב\"ד","בית חינוך גני איילון","ת\"ת חב\"ד ליובאוויטש לוד","נער ישראל ירושלים","אהלי מנחם ביתר עילית","תפארת מנחם ביתר עילית","תפארת שמואל בית שמש","פאר מנחם אלעד","תורת מנחם תל ציון","ת\"ת רחובות","בית חינוך נס ציונה","בית חינוך אשדוד","ת\"ת קרית מלאכי","בני מנחם קרית מלאכי","אהלי מנחם קרית גת","אור מנחם אשקלון","בית ישראל נתיבות","אור מנחם אופקים","אור מנחם ערד"].forEach(function(i){ $("r-who").add(new Option(i,i)); $("y-inst").add(new Option(i,i)); $("rk-inst").add(new Option(i,i)); });
   function say(id,t){ var e=$(id); if(e) e.textContent=t; }
   function wire(btn,check,ok){
     $(btn).addEventListener("click",function(){
@@ -603,6 +612,20 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
       T(r.what,r.d); this.textContent="נשלח ✓"; this.disabled=true; if(ok) say(ok[0],ok[1]);
     });
   }
+  // A personal thank-you to the coordinator, with the coordinator's name when we have it
+  var RAKAZIM={ /* "שם המוסד": "שם הרכז" */ };
+  function rkText(){ var n=RAKAZIM[$("rk-inst").value]||"";
+    return (n?"לרכז היקר, "+n+", שלום וברכה!":"לרכז היקר, שלום וברכה!")+"\nרציתי לומר לך תודה אישית על כל מה שהשקעת מאחורי הקלעים בשבוע החסידות \"אורייתא\": ההכנה, ההפקה וההפעלה. ראיתי, והערכתי.\nיישר כוח גדול, ולשנה טובה בלימוד החסידות ובדרכי החסידות!"; }
+  var rkTouched=false;
+  $("rk-text").value=rkText();
+  $("rk-text").addEventListener("input",function(){ rkTouched=true; rkHref(); });
+  $("rk-inst").addEventListener("change",function(){ if(!rkTouched) $("rk-text").value=rkText(); rkHref(); });
+  function rkHref(){ $("rk-wa").href="https://wa.me/?text="+encodeURIComponent($("rk-text").value); }
+  rkHref();
+  $("rk-wa").addEventListener("click",function(){ rkHref(); T("העביר הודעה","תודה לרכז "+($("rk-inst").value||"")+" (וואטסאפ)"); });
+  $("rk-copy").addEventListener("click",function(){ var b=this, v=$("rk-text").value;
+    (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){b.textContent="הועתק ✓"},function(){$("rk-text").select();b.textContent="מסומן. אפשר להעתיק"});
+    T("העביר הודעה","תודה לרכז "+($("rk-inst").value||"")+" (העתקה)"); });
   // Copy buttons
   document.querySelectorAll("[data-copy]").forEach(function(b){ b.addEventListener("click",function(){
     var src=$(b.dataset.copy), text=src.innerText;
@@ -647,8 +670,7 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     beit:{events:[],groups:[{label:"קמפוס חולון (ימי חמישי)",events:[D(2026,12,31,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חולון","",'כ"א טבת'),D(2027,2,18,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חולון","",'י"א אדר א\''),D(2027,5,6,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חולון","",'כ"ט ניסן')]},{label:"קמפוס חיפה (ימי שלישי)",events:[D(2026,12,29,null,null,BEIT+" · יום 1","קמפוס שלוחי החינוך, חיפה","",'י"ט טבת'),D(2027,2,16,null,null,BEIT+" · יום 2","קמפוס שלוחי החינוך, חיפה","",'ט\' אדר א\''),D(2027,5,4,null,null,BEIT+" · יום 3","קמפוס שלוחי החינוך, חיפה","",'כ"ז ניסן')]}],
       msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\n"בית המדרש" של הרשת לשלוחי החינוך: שלושה ימי למידה, מוכרים לגמול השתלמות של 30 שעות.\n\nקמפוס חולון (ימי חמישי): כ"א טבת (31.12) · י"א אדר א\' (18.2) · כ"ט ניסן (6.5)\nקמפוס חיפה (ימי שלישי): י"ט טבת (29.12) · ט\' אדר א\' (16.2) · כ"ז ניסן (4.5)\n\nמשתתפים בשלושת הימים, בקמפוס אחד: התוכנית בנויה כרצף.\nמי שמעוניין, כתבו לי.'}]},
     yudtes:{events:[],
-      msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\nשבוע החסידות "אורייתא" בשיאו, ואנחנו נכנסים להילוך גבוה לקראת י"ט כסלו, ראש השנה לחסידות.\nתודה לכל אחד ואחד מכם על ההשקעה, ובמיוחד לרכז שלנו, שמאחורי הקלעים.\nבואו נסיים את השבוע בשמחה גדולה, ונעביר לתלמידים את האור של חג הגאולה.\n\nלשנה טובה בלימוד החסידות ובדרכי החסידות תכתבו ותחתמו!'},
-            {to:"לרכז נרות להאיר",text:'לרכז היקר, שלום וברכה!\nרציתי לומר לך תודה אישית על כל מה שהשקעת מאחורי הקלעים בשבוע החסידות "אורייתא": ההכנה, ההפקה וההפעלה. ראינו, והערכנו.\nיישר כוח גדול, ולשנה טובה בלימוד החסידות ובדרכי החסידות!'}]}
+      msgs:[{to:"לקבוצת הצוות",text:'צוות יקר, שלום וברכה!\nשבוע החסידות "אורייתא" בשיאו, ואנחנו נכנסים להילוך גבוה לקראת י"ט כסלו, ראש השנה לחסידות.\nתודה לכל אחד ואחד מכם על ההשקעה, ובמיוחד לרכז שלנו, שמאחורי הקלעים.\nבואו נסיים את השבוע בשמחה גדולה, ונעביר לתלמידים את האור של חג הגאולה.\n\nלשנה טובה בלימוד החסידות ובדרכי החסידות תכתבו ותחתמו!'}]}
   };
   var p2=function(n){return (n<10?"0":"")+n};
   function hm(h){ var H=Math.floor(h),M=Math.round((h-H)*60); return p2(H)+p2(M)+"00"; }
