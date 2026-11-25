@@ -468,6 +468,20 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
       <p class="act" style="margin:0">מה לעשות: זה הזמן לוודא שהכל הגיע, שלא חסר כלום, ושהמוסד ערוך לחלק את הערכה לתלמידים בשבוע הבא.</p>
     </div>
     <p class="muted" style="font-size:.9rem">לעמוד התוכן של "אורייתא": <a href="https://nerot.mbakodesh.org.il/program/אורייתא" target="_blank" rel="noopener" data-link="אורייתא" style="color:var(--brand);font-weight:700">nerot.mbakodesh.org.il ←</a></p>
+    <div class="panel" id="orayta-fb" style="gap:8px">
+      <p class="eyebrow">משוב · יישר כוח לרב שמעון לוין</p>
+      <p style="margin:0">את שבוע החסידות "אורייתא" הוביל <strong>הרב שמעון לוין, רכז החינוך החברתי הארצי</strong>, יחד עם צוות "נרות להאיר". מה הצליח במיוחד אצלכם? מה נגע בתלמידים? המשוב שלכם יגיע אליו ישירות.</p>
+      <textarea id="fb-text" maxlength="800" rows="3" aria-label="המשוב שלי על שבוע החסידות"></textarea>
+      <div><button type="button" class="sendnow" id="fb-send">שליחת המשוב</button></div>
+      <p class="status" id="fb-status"></p>
+    </div>
+    <div class="panel" style="gap:8px;background:linear-gradient(150deg,#594e93,#2a1d63);border:none;color:#fff">
+      <p style="font-family:var(--display);font-weight:900;font-size:1.3rem;color:#ff8f4f;margin:0">📸 אלבום "אורייתא": שתפו אותנו</p>
+      <p style="margin:0">אנחנו מכינים <strong>אלבום סיכום</strong> לשבוע החסידות, שיחולק לכל מוסדות הרשת: תמונות, סרטונים, סיפורים מרגשים, תגובות של תלמידים והורים ונתונים. כל מוסד יקבל בו מקום.</p>
+      <p style="margin:0">שלחו כל מה שנראה לכם נכון לשתף, עד <strong>יום חמישי, כ"ג כסלו (3.12)</strong>:</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><!--ALBUM_FORM--><a class="wabtn" data-link="אלבום אורייתא: וואטסאפ" href="https://wa.me/972533129694?text=%D7%9C%D7%90%D7%9C%D7%91%D7%95%D7%9D%20%22%D7%90%D7%95%D7%A8%D7%99%D7%99%D7%AA%D7%90%22%0A%D7%9E%D7%95%D7%A1%D7%93%3A%20%0A%D7%9E%D7%94%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A9%D7%AA%D7%A3%20%28%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20/%20%D7%A1%D7%A8%D7%98%D7%95%D7%9F%20/%20%D7%A1%D7%99%D7%A4%D7%95%D7%A8%29%3A%20%0A" target="_blank" rel="noopener">לשלוח בוואטסאפ</a></div>
+      <p style="margin:0;font-size:.88rem;color:#d9d1f2">בתמונות של תלמידים: רק מה שמותר לפרסום לפי הנהלים במוסד שלכם.</p>
+    </div>
     <div class="kit" data-kit="yudtes"></div>
   </section>
 
@@ -669,6 +683,9 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
     if(!i||!n||(!p&&!m)){ say("y-status","צריך למלא מוסד, שם, ולפחות נייד או מייל."); return null; }
     if(!$("y-ok").checked){ say("y-status","סמנו שאיש הקשר יודע ומסכים לקבל הודעות."); return null; }
     return {what:"איש קשר נוסף", d:"מוסד: "+i+" | שם: "+n+" | תפקיד: "+$("y-role").value+" | נייד: "+p+" | מייל: "+m}; },["y-status","תודה! איש הקשר נוסף, ומעכשיו הוא יקבל במקביל אליך."]);
+  wire("fb-send",function(){ var a=$("fb-text").value.trim();
+    if(!a){ say("fb-status","כתבו כמה מילים לפני השליחה."); return null; }
+    return {what:"משוב אורייתא", d:a}; },["fb-status","תודה! המשוב יועבר לרב שמעון לוין."]);
   wire("ask-send",function(){ var t=$("ask-text").value.trim(); if(!t){ say("ask-status","כתבו את השאלה לפני השליחה."); return null; }
     return {what:"שאלה", d:t}; },["ask-status","השאלה נשלחה, ונחזור אליך באופן אישי."]);
 })();

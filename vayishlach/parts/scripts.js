@@ -66,6 +66,9 @@
     if(!i||!n||(!p&&!m)){ say("y-status","צריך למלא מוסד, שם, ולפחות נייד או מייל."); return null; }
     if(!$("y-ok").checked){ say("y-status","סמנו שאיש הקשר יודע ומסכים לקבל הודעות."); return null; }
     return {what:"איש קשר נוסף", d:"מוסד: "+i+" | שם: "+n+" | תפקיד: "+$("y-role").value+" | נייד: "+p+" | מייל: "+m}; },["y-status","תודה! איש הקשר נוסף, ומעכשיו הוא יקבל במקביל אליך."]);
+  wire("fb-send",function(){ var a=$("fb-text").value.trim();
+    if(!a){ say("fb-status","כתבו כמה מילים לפני השליחה."); return null; }
+    return {what:"משוב אורייתא", d:a}; },["fb-status","תודה! המשוב יועבר לרב שמעון לוין."]);
   wire("ask-send",function(){ var t=$("ask-text").value.trim(); if(!t){ say("ask-status","כתבו את השאלה לפני השליחה."); return null; }
     return {what:"שאלה", d:t}; },["ask-status","השאלה נשלחה, ונחזור אליך באופן אישי."]);
 })();
