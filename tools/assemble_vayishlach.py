@@ -174,6 +174,8 @@ input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1
 .panel.riddle .cpbtn{color:#fff;border-color:rgba(255,255,255,.6)}
 .kitrow{gap:10px}
 .kitrow .kt{flex:1 1 100%}
+#album strong,#album b{color:#ffe08a}
+.cpbtn[href]::before{content:none}
 .pending{background:#fff2b3;color:#5a4500;border:2px dashed #b9861f;border-radius:10px;padding:8px 12px;font-weight:700}
 """
 body = body.replace("__LOGO__", logo)
