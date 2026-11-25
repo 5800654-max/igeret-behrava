@@ -6,7 +6,8 @@ logo = open(os.path.join(ROOT, "tools", "logo.datauri"), encoding="utf8").read()
 P = os.path.join(ROOT, "vayishlach", "parts")
 body = (open(os.path.join(P, "top.html"), encoding="utf8").read() + "\n<script>\n" +
         open(os.path.join(P, "scripts.js"), encoding="utf8").read() + "\n" +
-        open(os.path.join(P, "gifts.js"), encoding="utf8").read() + "\n</script>\n")
+        open(os.path.join(P, "gifts.js"), encoding="utf8").read() + "\n" +
+        open(os.path.join(ROOT, "tools", "wa-smart.js"), encoding="utf8").read() + "\n</script>\n")
 open(os.path.join(ROOT, "vayishlach", "body.html"), "w", encoding="utf8").write(body)
 extra = """
 input{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box}
